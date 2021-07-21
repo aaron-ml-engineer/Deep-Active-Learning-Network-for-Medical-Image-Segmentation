@@ -45,3 +45,4 @@ def crop_center(img, croph, cropw):
     startw = width//2-(cropw//2)        
     return img[:, starth: starth+croph, startw: startw + cropw]
 
+

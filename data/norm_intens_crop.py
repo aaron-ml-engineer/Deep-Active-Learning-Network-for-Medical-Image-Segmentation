@@ -2,7 +2,6 @@ import os
 import numpy as np
 import SimpleITK as sitk
 
-
 def file_name_path(file_dir, dir=True, file=False):
     """
     get root path, sub_directories and all_sub_files
@@ -19,8 +18,8 @@ def norm_intens_filter(slice, top=99, bottom=1):
     """
     remove the top and bottom 1% of intensities and then normalise image with zero mean and unit variance  
     :param slice:
+    :param top:
     :param bottom:
-    :param down:
     """
     # removing outlier intensities
     b = np.percentile(slice, top)
@@ -39,7 +38,13 @@ def norm_intens_filter(slice, top=99, bottom=1):
         norm[norm == norm.min()] = -9 # black background area
         return norm
 
-def crop_center(img, croph, cropw):   
+def crop_center(img, croph, cropw):
+    """
+    crop slices from their center by a certain height and width.  
+    :param img:
+    :param croph:
+    :param cropw:
+    """   
     height, width = img[0].shape 
     starth = height//2-(croph//2)
     startw = width//2-(cropw//2)        

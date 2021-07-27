@@ -3,6 +3,11 @@ import torch
 import torch.nn.functional as F
 
 def iou_score(output, target):
+    """
+    calculates the iou score for a given prediction.  
+    :param output:
+    :param target:
+    """ 
     smooth = 1e-5
 
     if torch.is_tensor(output):
@@ -17,6 +22,11 @@ def iou_score(output, target):
     return (intersection + smooth) / (union + smooth)
 
 def mean_iou(output, target):
+    """
+    calculates the mean iou score for a given prediction.  
+    :param output:
+    :param target:
+    """ 
     smooth = 1e-5
 
     output = torch.sigmoid(output).data.cpu().numpy()
@@ -33,6 +43,11 @@ def mean_iou(output, target):
     return np.mean(ious)
 
 def batch_iou(output, target):
+    """
+    calculates the iou score for a batch of predictions.  
+    :param output:
+    :param target:
+    """ 
     output = torch.sigmoid(output).data.cpu().numpy() > 0.5
     target = (target.data.cpu().numpy() > 0.5).astype('int')
     output = output[:,0,:,:]

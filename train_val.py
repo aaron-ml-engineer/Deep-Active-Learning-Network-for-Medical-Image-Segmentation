@@ -82,8 +82,6 @@ def train(train_loader, model, loss_fn, optimizer, device): #scaler
     
     return log
 
-
-
 def validate(val_loader, model, loss_fn, device):
     losses = AverageMeter()
     ious = AverageMeter()
@@ -115,9 +113,9 @@ def validate(val_loader, model, loss_fn, device):
 
     return log
                                 
-def main(): # 70% 15% 15% split
+def main(): # data is split into train and validation (labelled, 30%), unlabelled (active learning, 50%), and test (20%)
     EPOCHS = 10000
-    LEARNING_RATE = 1e-4
+    LEARNING_RATE = 1e-2          
     EARLY_STOP = 20
     DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
     BATCH_SIZE = 32
@@ -197,10 +195,9 @@ def main(): # 70% 15% 15% split
             trigger = 0
 
         # early stopping
-        if not EARLY_STOP is None:
-            if trigger >= EARLY_STOP:
-                print("=> early stopping")
-                break
+        if trigger >= EARLY_STOP:
+            print("=> early stopping")
+            break
         
         # if (epoch % 5==0):
         #     checkpoint = {

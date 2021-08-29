@@ -6,7 +6,6 @@ from collections import OrderedDict
 import imageio
 
 import numpy as np
-from sklearn.model_selection import train_test_split
 from skimage.io import imread, imsave 
 from hausdorff import hausdorff_distance
 
@@ -73,14 +72,17 @@ def main():
                 rgbPic = np.zeros([160, 160, 3], dtype=np.uint8)
                 for idx in range(preds.shape[2]):
                     for idy in range(preds.shape[3]):
-                        if preds[i,0,idx,idy] > 0.5:
+                        #(ED, peritumoral edema) (label 2) green
+                        if preds[i,0,idx,idy] > 0.5: 
                             rgbPic[idx, idy, 0] = 0
                             rgbPic[idx, idy, 1] = 128
                             rgbPic[idx, idy, 2] = 0
+                        #(NET, non-enhancing tumor)(label 1) red
                         if preds[i,1,idx,idy] > 0.5:
                             rgbPic[idx, idy, 0] = 255
                             rgbPic[idx, idy, 1] = 0
                             rgbPic[idx, idy, 2] = 0
+                        #(ET, enhancing tumor)(label 4) yellow
                         if preds[i,2,idx,idy] > 0.5:
                             rgbPic[idx, idy, 0] = 255
                             rgbPic[idx, idy, 1] = 255
@@ -138,9 +140,9 @@ def main():
     wt_ppvs = []
     tc_ppvs = []
     et_ppvs = []
-    wt_Hausdorf = []
-    tc_Hausdorf = []
-    et_Hausdorf = []
+    wt_Hausdorff = []
+    tc_Hausdorff = []
+    et_Hausdorff = []
 
     wtMaskList = []
     tcMaskList = []
@@ -182,33 +184,34 @@ def main():
                     etmaskregion[idx, idy] = 1
                 if pb[idx, idy, 1] == 128:
                     etpbregion[idx, idy] = 1
-        #Start calculating WT
+
+        #Start calculating WT - whole tumour
         dice = dice_coef(wtpbregion,wtmaskregion)
         wt_dices.append(dice)
         ppv_n = ppv(wtpbregion, wtmaskregion)
         wt_ppvs.append(ppv_n)
         Hausdorff = hausdorff_distance(wtmaskregion, wtpbregion)
-        wt_Hausdorf.append(Hausdorff)
+        wt_Hausdorff.append(Hausdorff)
         sensitivity_n = sensitivity(wtpbregion, wtmaskregion)
         wt_sensitivities.append(sensitivity_n)
 
-        # Start calculating TC
+        # Start calculating TC - tumour core
         dice = dice_coef(tcpbregion, tcmaskregion)
         tc_dices.append(dice)
         ppv_n = ppv(tcpbregion, tcmaskregion)
         tc_ppvs.append(ppv_n)
         Hausdorff = hausdorff_distance(tcmaskregion, tcpbregion)
-        tc_Hausdorf.append(Hausdorff)
+        tc_Hausdorff.append(Hausdorff)
         sensitivity_n = sensitivity(tcpbregion, tcmaskregion)
         tc_sensitivities.append(sensitivity_n)
 
-        # Start calculating ET
+        # Start calculating ET - enhancing tumour
         dice = dice_coef(etpbregion, etmaskregion)
         et_dices.append(dice)
         ppv_n = ppv(etpbregion, etmaskregion)
         et_ppvs.append(ppv_n)
         Hausdorff = hausdorff_distance(etmaskregion, etpbregion)
-        et_Hausdorf.append(Hausdorff)
+        et_Hausdorff.append(Hausdorff)
         sensitivity_n = sensitivity(etpbregion, etmaskregion)
         et_sensitivities.append(sensitivity_n)
 
@@ -224,9 +227,9 @@ def main():
     print('TC sensitivity: %.4f' % np.mean(tc_sensitivities))
     print('ET sensitivity: %.4f' % np.mean(et_sensitivities))
     print("=============")
-    print('WT Hausdorff: %.4f' % np.mean(wt_Hausdorf))
-    print('TC Hausdorff: %.4f' % np.mean(tc_Hausdorf))
-    print('ET Hausdorff: %.4f' % np.mean(et_Hausdorf))
+    print('WT Hausdorff: %.4f' % np.mean(wt_Hausdorff))
+    print('TC Hausdorff: %.4f' % np.mean(tc_Hausdorff))
+    print('ET Hausdorff: %.4f' % np.mean(et_Hausdorff))
     print("=============")
 
     

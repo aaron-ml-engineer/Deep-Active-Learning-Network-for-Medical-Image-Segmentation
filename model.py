@@ -28,6 +28,7 @@ class UNet2D(nn.Module):
         self.encode = nn.ModuleList()
         self.decode = nn.ModuleList()
         self.pool = nn.MaxPool2d(kernel_size=2, stride=2)
+        self.dropout = nn.Dropout2d(p=0.2)
 
         # Down part of UNet - encoder
         for feature in features:                            # adds 4 convblocks
@@ -51,8 +52,10 @@ class UNet2D(nn.Module):
             x = down(x)
             skip_connections.append(x)                          # append result to skip_connections list
             x = self.pool(x)                                    # apply maxpooling after double conv
+            x = self.dropout(x)                                 # apply dropout after every pooling layer
         
         x = self.bottleneck(x)
+        x = self.dropout(x)
         skip_connections = skip_connections[::-1]               # reverse the order of skip connections
  
         for idx in range(0, len(self.decode), 2):               # step of 2
@@ -60,4 +63,5 @@ class UNet2D(nn.Module):
             skip_connection = skip_connections[idx//2]          # step by 2
             concat_skip = torch.cat((skip_connection, x), dim=1)
             x = self.decode[idx+1](concat_skip)
-        return self.final_conv(x)
+            #x = self.dropout(x)                                 # apply dropout after conv block
+        return self.final_conv(x)             # self.dropout

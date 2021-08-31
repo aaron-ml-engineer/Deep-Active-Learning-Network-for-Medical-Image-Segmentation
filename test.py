@@ -30,8 +30,8 @@ from dataset import *
 def main():
     BATCH_SIZE = 32
     DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
-    TEST_IMG_DIR = glob(r'D:\\AI MSc Large Modules\\Masters_Project\\CODE\\Deep-Inter-Active-Refinement-Network-for-Medical-Image-Segmentation\\data\\test\\img\\*')
-    TEST_LABEL_DIR = glob(r'D:\\AI MSc Large Modules\\Masters_Project\\CODE\\Deep-Inter-Active-Refinement-Network-for-Medical-Image-Segmentation\\data\\test\\label\\*')
+    TEST_IMG_DIR = glob(r'D:\\AI MSc Large Modules\\Masters_Project\\CODE\\Deep-Active-Learning-Network-for-Medical-Image-Segmentation\\data\\test\\img\\*')
+    TEST_LABEL_DIR = glob(r'D:\\AI MSc Large Modules\\Masters_Project\\CODE\\Deep-Active-Learning-Network-for-Medical-Image-Segmentation\\data\\test\\label\\*')
 
     test_img_paths =  TEST_IMG_DIR
     test_mask_paths = TEST_LABEL_DIR
@@ -143,13 +143,6 @@ def main():
     wt_Hausdorff = []
     tc_Hausdorff = []
     et_Hausdorff = []
-
-    wtMaskList = []
-    tcMaskList = []
-    etMaskList = []
-    wtPbList = []
-    tcPbList = []
-    etPbList = []
 
     maskPath = glob("base_test_results/output/" + "GT\*.png")
     pbPath = glob("base_test_results/output/" + "*.png")

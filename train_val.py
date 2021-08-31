@@ -49,7 +49,7 @@ def train(train_loader, model, loss_fn, optimizer, device): #scaler
     dices = AverageMeter()
 
     model.train()                                       
-    for batch_idx, (data, labels) in tqdm(enumerate(train_loader), total=len(train_loader)):    # train
+    for batch_idx, (data, labels) in enumerate(train_loader):    # train - used to have tqdm
         data = data.to(device)#, dtype=torch.float)
         labels = labels.to(device)#, dtype=torch.long) 
 
@@ -121,8 +121,8 @@ def main(): # data is split into train and validation (labelled, 30%), unlabelle
     BATCH_SIZE = 32
     NUM_WORKERS = 0
     #SCALER = amp.GradScaler()
-    TRAIN_IMG_DIR = glob(r'D:\\AI MSc Large Modules\\Masters_Project\\CODE\\Deep-Inter-Active-Refinement-Network-for-Medical-Image-Segmentation\\data\\train_val\\img\\*')
-    TRAIN_LABEL_DIR = glob(r'D:\\AI MSc Large Modules\\Masters_Project\\CODE\\Deep-Inter-Active-Refinement-Network-for-Medical-Image-Segmentation\\data\\train_val\\label\\*')
+    TRAIN_IMG_DIR = glob(r'D:\\AI MSc Large Modules\\Masters_Project\\CODE\\Deep-Active-Learning-Network-for-Medical-Image-Segmentation\\data\\train_val\\img\\*')
+    TRAIN_LABEL_DIR = glob(r'D:\\AI MSc Large Modules\\Masters_Project\\CODE\\Deep-Active-Learning-Network-for-Medical-Image-Segmentation\\data\\train_val\\label\\*')
 
     train_img_paths, val_img_paths, train_mask_paths, val_mask_paths = train_test_split(TRAIN_IMG_DIR, TRAIN_LABEL_DIR, test_size=0.2, random_state=41)
     print("train_num:%s"%str(len(train_img_paths)))

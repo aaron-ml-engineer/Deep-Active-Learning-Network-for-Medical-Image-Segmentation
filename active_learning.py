@@ -1,5 +1,6 @@
 from glob import glob
 import os
+import errno
 import sys
 import time
 from collections import OrderedDict
@@ -54,12 +55,12 @@ def mc_samples(data_loader, forward_passes, model, n_classes, n_samples, device,
     :param device:
     """
     dropout_predictions = np.empty((0, n_samples, n_classes, height, width)) 
-    for i in range(forward_passes):                         # perform x forward passes to obtain x monte-carlo predictions
+    for i in tqdm(range(forward_passes)):                         # perform x forward passes to obtain x monte-carlo predictions
         predictions_forward_pass = np.empty((0, n_classes, height, width))
         model.eval()
         enable_dropout(model)   
         with torch.no_grad():            
-            for batch_idx, (data, labels) in tqdm(enumerate(data_loader), total = len(data_loader)):
+            for batch_idx, (data, labels) in enumerate(data_loader):
                 data = data.to(device) 
                 preds = model(data)
                 preds = torch.sigmoid(preds).data.cpu().numpy()
@@ -77,12 +78,13 @@ def uncertainty_scoring(uncertainty_maps):
     :param uncertainty_maps: trained Unet model
     :return: numpy array with an avg uncertainty score for each image in the unlabelled set
     """
-    uncertainty_score = np.empty((uncertainty_maps.shape[0]))
+    uncertainty_scores = np.empty((uncertainty_maps.shape[0]))
     for i in range(uncertainty_maps.shape[0]):
-        uncertainty_score[i] = np.mean(uncertainty_maps[i])
-    return uncertainty_score
+        uncertainty_scores[i] = np.mean(uncertainty_maps[i])    
+    overall_uncertainty_score = np.sum(uncertainty_maps)
+    return uncertainty_scores, overall_uncertainty_score
     
-def add_annotated_sample(to_be_annotated_index, labelled_img_paths, labelled_mask_paths, unlabelled_img_paths, unlabelled_mask_paths, batch_size):
+def add_annotated_sample(to_be_annotated_index, labelled_img_paths, labelled_mask_paths, unlabelled_img_paths, unlabelled_mask_paths):
     """
     the labelled dataset is amended to include the samples to be annotated and the unlabelled dataset is amended to remove the samples to be annotated.
     :param labelled_dataset:
@@ -106,54 +108,28 @@ def main():
     random_bool = False                     # controls whether the labelled set is entered randomly - normal training or actively - active learning
     height, width = 160, 160
     n_classes = 3                           # edema, non-enhancing tumour, enhancing tumour
-    nb_experiments = 10
-    nb_active_learning_iter = 10            # number of active learning iterations
+    nb_experiments = 2
+    nb_active_learning_iter = 3            # number of active learning iterations
     nb_active_learning_iter_size = 5        # number of samples to be added to the training set after each active learning iteration
-    FORWARD_PASSES = 20
-    EPOCHS = 10
+    FORWARD_PASSES = 3
+    EPOCHS = 1000
     LEARNING_RATE = 1e-2
-    EARLY_STOP = 20
+    EARLY_STOP = 15
     DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
     BATCH_SIZE = 32
     NUM_WORKERS = 0
     #SCALER = amp.GradScaler()
-    TRAIN_IMG_DIR = glob(r'D:\\AI MSc Large Modules\\Masters_Project\\CODE\\Deep-Inter-Active-Refinement-Network-for-Medical-Image-Segmentation\\data\\train_val\\img\\*')
-    TRAIN_LABEL_DIR = glob(r'D:\\AI MSc Large Modules\\Masters_Project\\CODE\\Deep-Inter-Active-Refinement-Network-for-Medical-Image-Segmentation\\data\\train_val\\label\\*')
-    UNLABELLED_IMG_DIR = glob(r'D:\\AI MSc Large Modules\\Masters_Project\\CODE\\Deep-Inter-Active-Refinement-Network-for-Medical-Image-Segmentation\\data\\unlabelled\\img\\*')
-    UNLABELLED_LABEL_DIR = glob(r'D:\\AI MSc Large Modules\\Masters_Project\\CODE\\Deep-Inter-Active-Refinement-Network-for-Medical-Image-Segmentation\\data\\unlabelled\\label\\*')
-    TEST_IMG_DIR = glob(r'D:\\AI MSc Large Modules\\Masters_Project\\CODE\\Deep-Inter-Active-Refinement-Network-for-Medical-Image-Segmentation\\data\\test\\img\\*')
-    TEST_LABEL_DIR = glob(r'D:\\AI MSc Large Modules\\Masters_Project\\CODE\\Deep-Inter-Active-Refinement-Network-for-Medical-Image-Segmentation\\data\\test\\label\\*')
+    TRAIN_IMG_DIR = glob(r'D:\\AI MSc Large Modules\\Masters_Project\\CODE\\Deep-Active-Learning-Network-for-Medical-Image-Segmentation\\data\\train_val\\img\\*')
+    TRAIN_LABEL_DIR = glob(r'D:\\AI MSc Large Modules\\Masters_Project\\CODE\\Deep-Active-Learning-Network-for-Medical-Image-Segmentation\\data\\train_val\\label\\*')
+    UNLABELLED_IMG_DIR = glob(r'D:\\AI MSc Large Modules\\Masters_Project\\CODE\\Deep-Active-Learning-Network-for-Medical-Image-Segmentation\\data\\unlabelled\\img\\*')
+    UNLABELLED_LABEL_DIR = glob(r'D:\\AI MSc Large Modules\\Masters_Project\\CODE\\Deep-Active-Learning-Network-for-Medical-Image-Segmentation\\data\\unlabelled\\label\\*')
+    TEST_IMG_DIR = glob(r'D:\\AI MSc Large Modules\\Masters_Project\\CODE\\Deep-Active-Learning-Network-for-Medical-Image-Segmentation\\data\\test\\img\\*')
+    TEST_LABEL_DIR = glob(r'D:\\AI MSc Large Modules\\Masters_Project\\CODE\\Deep-Active-Learning-Network-for-Medical-Image-Segmentation\\data\\test\\label\\*')
 
     # rename directories
     labelled_img_paths, labelled_mask_paths = TRAIN_IMG_DIR, TRAIN_LABEL_DIR
     unlabelled_img_paths, unlabelled_mask_paths = UNLABELLED_IMG_DIR, UNLABELLED_LABEL_DIR
     test_img_paths, test_mask_paths = TEST_IMG_DIR, TEST_LABEL_DIR
-
-    # load labelled data
-    labelled_dataset_0 = Dataset(labelled_img_paths, labelled_mask_paths)
-    labelled_loader_0 = torch.utils.data.DataLoader(
-        labelled_dataset_0,
-        batch_size=BATCH_SIZE,
-        shuffle=False,
-        pin_memory=True,
-        drop_last=False)
-
-    # load unlabelled dataset
-    unlabelled_dataset_0 = Dataset(unlabelled_img_paths, unlabelled_mask_paths)
-    unlabelled_loader_0 = torch.utils.data.DataLoader(
-        unlabelled_dataset_0,
-        batch_size=BATCH_SIZE,
-        shuffle=False,
-        pin_memory=True,
-        drop_last=False)
-
-    test_dataset = Dataset(test_img_paths, test_mask_paths)
-    test_loader = torch.utils.data.DataLoader(
-        test_dataset,
-        batch_size=BATCH_SIZE,
-        shuffle=False,
-        pin_memory=True,
-        drop_last=False)
 
     # model, optimiser
     model = UNet2D(in_channels=4, out_channels=3).to(DEVICE) 
@@ -161,48 +137,70 @@ def main():
     loss_fn = BCEDiceLoss()
     optimizer = optim.Adam(filter(lambda p: p.requires_grad, model.parameters()), lr=LEARNING_RATE)
 
-    # load weights from training set
+    # load weights from base training set
     model.load_state_dict(torch.load('models/base_trained/2DUNET.pth'))
     
-    n_samples = len(unlabelled_loader_0.dataset)
-    score_average = []
-    indexes_experiments = []
-    for r in range(nb_experiments):
-        # DATASETS NEED TO BE RESET FOR EACH EXPERIMENT
+    n_samples = len(unlabelled_img_paths)
+    
+    overall_results = []
+    overall_start = time.time()
+    for r in range(nb_experiments):        
         print("\n\n*****************EXPERIMENT " + str(r+1) + " IS STARTING********************")
-        labelled_dataset = labelled_dataset_0
-        unlabelled_dataset = unlabelled_dataset_0
-        labelled_loader = labelled_loader_0
-        unlabelled_loader = unlabelled_loader_0
+        
+        # initialise paths with original unlabelled and labelled datasets 
+        labelled_img_paths, labelled_mask_paths = TRAIN_IMG_DIR, TRAIN_LABEL_DIR
+        unlabelled_img_paths, unlabelled_mask_paths = UNLABELLED_IMG_DIR, UNLABELLED_LABEL_DIR
+        test_img_paths, test_mask_paths = TEST_IMG_DIR, TEST_LABEL_DIR
 
+        # initialise results tracker for each experiment
+        experiment_iteration_results = []
         for i in range(nb_active_learning_iter):                    # how many times the active learning loops
             if random_bool == True:
-                model_path = 'models/randomly_trained/2DUNET_iter' + str(i) + '.pth' 
+                model_path = 'models/randomly_trained/2DUNET_iter' + str(i) + '.pth'
+                results_path = 'random_learning_results'
+                data_type = 'random'
             else:
                 model_path = 'models/active_trained/2DUNET_iter' + str(i) + '.pth'
+                results_path = 'active_learning_results'
+                data_type = 'uncertain'
 
             print("\n---------STARTING AL ITERATION NUMBER " + str(i) + "----------")
 
+            # load unlabelled dataset
+            unlabelled_dataset = Dataset(unlabelled_img_paths, unlabelled_mask_paths)
+            unlabelled_loader = torch.utils.data.DataLoader(
+                unlabelled_dataset,
+                batch_size=BATCH_SIZE,
+                shuffle=False,
+                pin_memory=True,
+                drop_last=False)
+
             # select samples to be annotated by an expert, either randomly or based on an uncertainty measure
             if random_bool == True:
-                to_be_added_random = np.random.choice(unlabelled_img_paths, nb_active_learning_iter_size)
-                new_labelled_img_paths, new_labelled_mask_paths, new_unlabelled_img_paths, \
-                    new_unlabelled_mask_paths, labelled_loader, unlabelled_loader = add_annotated_sample(to_be_added_random, labelled_img_paths, 
-                                                            labelled_mask_paths, unlabelled_img_paths, unlabelled_mask_paths, BATCH_SIZE)
+                to_be_added_random = np.random.choice(n_samples, nb_active_learning_iter_size)
+                
+                labelled_img_paths, labelled_mask_paths, unlabelled_img_paths, \
+                    unlabelled_mask_paths = add_annotated_sample(to_be_added_random, labelled_img_paths, 
+                                                        labelled_mask_paths, unlabelled_img_paths, unlabelled_mask_paths)
             else:
-                print("Computing predictions for unlabelled data ...\n")
+                print("Computing Monte Carlo predictions for unlabelled data ...\n")
                 pred, dropout_predictions, uncertainty_maps = mc_samples(unlabelled_loader, FORWARD_PASSES, 
                                     model, n_classes, n_samples, DEVICE, height, width)
-                uncertainty_scores = uncertainty_scoring(uncertainty_maps)
+                uncertainty_scores, overall_uncertainty_score = uncertainty_scoring(uncertainty_maps)
                 to_be_annotated_uncertain = uncertainty_scores.argsort()[::-1][:nb_active_learning_iter_size]       # sorting the samples with the top 5 uncertainties and indexing them
-                new_labelled_img_paths, new_labelled_mask_paths, new_unlabelled_img_paths, \
-                    new_unlabelled_mask_paths, labelled_loader, unlabelled_loader = add_annotated_sample(to_be_annotated_uncertain, labelled_img_paths, 
-                                                            labelled_mask_paths, unlabelled_img_paths, unlabelled_mask_paths, BATCH_SIZE)
+                
+                labelled_img_paths, labelled_mask_paths, unlabelled_img_paths, \
+                    unlabelled_mask_paths = add_annotated_sample(to_be_annotated_uncertain, labelled_img_paths, 
+                                                        labelled_mask_paths, unlabelled_img_paths, unlabelled_mask_paths)
+
+            print("Overall uncertainty score for active learning iteration " + str(i) + " is", overall_uncertainty_score, "\n")
+            
+            print(str(nb_active_learning_iter_size) + " " + data_type + " samples have been added to the training set \n")
 
             print("------------TRAINING FOR AL ITERATION NUMBER " + str(i) + "-----------")
             
-            train_img_paths, val_img_paths, train_mask_paths, val_mask_paths = train_test_split(new_labelled_img_paths, 
-                                            new_labelled_mask_paths, test_size=0.2, random_state=41)
+            train_img_paths, val_img_paths, train_mask_paths, val_mask_paths = train_test_split(labelled_img_paths, 
+                                            labelled_mask_paths, test_size=0.2, random_state=41)
 
             train_dataset = Dataset(train_img_paths, train_mask_paths)
             val_dataset = Dataset(val_img_paths, val_mask_paths)
@@ -251,7 +249,15 @@ def main():
                 ], index=['epoch', 'lr', 'loss', 'iou', 'dice', 'val_loss', 'val_iou', 'val_dice'])
 
                 log = log.append(tmp, ignore_index=True)
-                log.to_csv("active_learning_results/experiment_" + str(r+1) + "/AL_iteration_" + str(i) + "/log" + ".csv", index=False)
+
+                path = results_path + "/experiment_" + str(r+1) + "/AL_iteration_" + str(i)
+                try:
+                    os.makedirs(path)
+                except OSError as exc:
+                    if exc.errno != errno.EEXIST:
+                        raise
+                    pass
+                log.to_csv(path + "/log" + ".csv", index=False)
 
                 trigger += 1
 
@@ -268,8 +274,18 @@ def main():
                 torch.cuda.empty_cache()
             end = time.time()
             print('Training and validation for active learning iteration ' + str(i) + ' has taken ', (end - start)/60, 'minutes to complete')
+    
             
             print("------------TESTING FOR ACTIVE LEARNING ITERATION " + str(i) + " -----------")
+
+            test_dataset = Dataset(test_img_paths, test_mask_paths)
+            test_loader = torch.utils.data.DataLoader(
+                test_dataset,
+                batch_size=BATCH_SIZE,
+                shuffle=False,
+                pin_memory=True,
+                drop_last=False)
+
             model.eval()
             """
             obtain and save the label map generated by the model for each active learning iteration
@@ -306,7 +322,15 @@ def main():
                                     rgbPic[idx, idy, 0] = 255
                                     rgbPic[idx, idy, 1] = 255
                                     rgbPic[idx, idy, 2] = 0
-                        imsave("active_learning_results/experiment_" + str(r+1) + "/AL_iteration_ " + str(i) + "/output/" + rgbName, rgbPic, check_contrast=False)
+
+                        path = results_path + "/experiment_" + str(r+1) + "/AL_iteration_" + str(i) + "/output/"
+                        try:
+                            os.makedirs(path)
+                        except OSError as exc:
+                            if exc.errno != errno.EEXIST:
+                                raise
+                            pass
+                        imsave(results_path + "/experiment_" + str(r+1) + "/AL_iteration_" + str(i) + "/output/" + rgbName, rgbPic, check_contrast=False)
 
             """
             calculate metrics: Dice, Sensitivity, PPV, Hausdorff for each AL iteration
@@ -324,15 +348,8 @@ def main():
             tc_Hausdorff = []
             et_Hausdorff = []
 
-            wtMaskList = []
-            tcMaskList = []
-            etMaskList = []
-            wtPbList = []
-            tcPbList = []
-            etPbList = []
-
             maskPath = glob("base_test_results/output/" + "GT\*.png")
-            pbPath = glob("active_learning_results/experiment_" + str(r+1) + "/AL_iteration_ "+ str(i) + "/output/" + "*.png")
+            pbPath = glob(results_path + "/experiment_" + str(r+1) + "/AL_iteration_ "+ str(i) + "/output/" + "*.png")
 
             for myi in tqdm(range(len(maskPath))):
                 mask = imread(maskPath[myi])
@@ -413,6 +430,37 @@ def main():
             print('TC Hausdorff: %.4f' % np.mean(tc_Hausdorff))
             print('ET Hausdorff: %.4f' % np.mean(et_Hausdorff))
             print("=============")
-            
+
+            iteration_results = {'WT Dice': np.mean(wt_dices), 'TC Dice': np.mean(tc_dices), 'ET Dice': np.mean(et_dices), 
+                                'WT PPV': np.mean(wt_ppvs), 'TC PPV': np.mean(tc_ppvs), 'ET PPV': np.mean(et_ppvs),
+                                'WT sensitivity': np.mean(wt_sensitivities), 'TC sensitivity': np.mean(tc_sensitivities), 'ET sensitivity': np.mean(et_sensitivities),
+                                'WT Hausdorff': np.mean(wt_Hausdorff), 'TC Hausdorff': np.mean(tc_Hausdorff), 'ET Hausdorff': np.mean(et_Hausdorff)}
+            experiment_iteration_results.append(iteration_results)
+        pickle.dump(experiment_iteration_results, open(results_path + '/experiment_' + str(r+1) + '/AL_iteration_' + str(i) + '/iteration.results', 'wb'), -1)     
+        
+        # calculate the mean metrics from every active learning iteration from one experiment
+        avg_iteration_WT_Dice = [experiment_iteration_results[i]['WT Dice'] for i in range(len(experiment_iteration_results))]
+        avg_iteration_TC_Dice = [experiment_iteration_results[i]['TC Dice'] for i in range(len(experiment_iteration_results))]
+        avg_iteration_ET_Dice = [experiment_iteration_results[i]['ET Dice'] for i in range(len(experiment_iteration_results))]
+        avg_iteration_WT_PPV = [experiment_iteration_results[i]['WT PPV'] for i in range(len(experiment_iteration_results))]
+        avg_iteration_TC_PPV = [experiment_iteration_results[i]['TC PPV'] for i in range(len(experiment_iteration_results))]
+        avg_iteration_ET_PPV = [experiment_iteration_results[i]['ET PPV'] for i in range(len(experiment_iteration_results))]
+        avg_iteration_WT_sensitivities = [experiment_iteration_results[i]['WT sensitivities'] for i in range(len(experiment_iteration_results))]
+        avg_iteration_TC_sensitivities = [experiment_iteration_results[i]['TC sensitivities'] for i in range(len(experiment_iteration_results))]
+        avg_iteration_ET_sensitivities = [experiment_iteration_results[i]['ET sensitivities'] for i in range(len(experiment_iteration_results))]
+        avg_iteration_WT_Hausdorff = [experiment_iteration_results[i]['WT Hausdorff'] for i in range(len(experiment_iteration_results))]
+        avg_iteration_TC_Hausdorff = [experiment_iteration_results[i]['TC Hausdorff'] for i in range(len(experiment_iteration_results))]
+        avg_iteration_ET_Hausdorff = [experiment_iteration_results[i]['ET Hausdorff'] for i in range(len(experiment_iteration_results))]
+        
+        # store the mean metrics from every active learning iteration from one experiment
+        avg_experiment_results = {'WT Dice': avg_iteration_WT_Dice, 'TC Dice': avg_iteration_TC_Dice, 'ET Dice': avg_iteration_ET_Dice, 
+                                'WT PPV': avg_iteration_WT_PPV, 'TC PPV': avg_iteration_TC_PPV, 'ET PPV': avg_iteration_ET_PPV,
+                                'WT sensitivity': avg_iteration_WT_sensitivities, 'TC sensitivity': avg_iteration_TC_sensitivities, 'ET sensitivity': avg_iteration_ET_sensitivities,
+                                'WT Hausdorff': avg_iteration_WT_Hausdorff, 'TC Hausdorff': avg_iteration_TC_Hausdorff, 'ET Hausdorff': avg_iteration_ET_Hausdorff}
+        overall_results.append(avg_experiment_results) # add the results for each experiment
+    
+    pickle.dump(overall_results, open(results_path + 'overall'+'.results', 'wb'), -1)   
+    overall_end = time.time()     
+    print('Learning for ' + str(r+1) + 'experiments has taken ', (overall_end - overall_start)/60, 'minutes to complete')
 if __name__ == '__main__':
     main()

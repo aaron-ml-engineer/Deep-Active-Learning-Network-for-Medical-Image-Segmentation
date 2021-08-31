@@ -5,8 +5,6 @@
 *** Thanks again! Now go create something AMAZING! :D
 -->
 
-
-
 <!-- PROJECT SHIELDS -->
 <!--
 *** I'm using markdown "reference style" links for readability.
@@ -15,14 +13,6 @@
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
-
-
 
 <!-- PROJECT LOGO -->
 <br />
@@ -31,22 +21,16 @@
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">Best-README-Template</h3>
+  <h3 align="center">Deep-Active-Learning-Network-for-Brain-MRI-Segmentation</h3>
 
   <p align="center">
-    An awesome README template to jumpstart your projects!
+    An active learning solution using a UNet with batch normalisation and max-pool Monte Carlo dropout
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/Assassinsarms/Deep-Active-Learning-Network-for-Medical-Image-Segmentation"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
-    ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
   </p>
 </p>
-
 
 
 <!-- TABLE OF CONTENTS -->
@@ -82,42 +66,46 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-There are many great README templates available on GitHub, however, I didn't find one that really suit my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
-
-Here's why:
-* Your time should be focused on creating something amazing. A project that solves a problem and helps others
-* You shouldn't be doing the same tasks over and over like creating a README from scratch
-* You should implement DRY principles to the rest of your life :smile:
-
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have contributed to expanding this template!
-
-A list of commonly used resources that I find helpful are listed in the acknowledgements.
+Medical image segmentation plays a vital role in computer-aided diagnosis (CAD) by allowing the distinction and identification of various anatomical and physiological features of disease which can be helpful in localisation of pathology and treatment planning. 
+       Use of deep learning for automatic medical image segmentation has been promoted as a solution to human error when performing medical image segmentation. Over time, the performance of these automatic medical segmentation algorithms has increased significantly with some outperforming humans (Haenssle et al., 2018). This is due to networks with deep architectures and the increase in available annotated datasets for training such models. Nevertheless, producing annotations for these datasets, specifically medical images, demands an expert and involves intense, time-consuming labour. Compared with natural images, medical images are usually grayscale in colour and have low-contrast which means that some regions in the image may have similar intensity and texture to neighbouring regions. Additionally, while these datasets are available, they are still not available in significant amounts for some areas of interest. Furthermore, most fully supervised models for automatic medical image segmentation have variable performance. Therefore, there is usually a need to refine the results from an automatic segmentation. In most real life medical applications, a human-assisted medical image segmentation program is used (Olabarriaga and Smeulders, 2001). With deep learning, the next logical step would become a human-in-the-loop segmentation program which integrates user input to refine segmentation predictions. This appears to be the preferred approach due to the high-stakes nature of medical image segmentation and the black-box nature of deep learning models. A human-in-the-loop strategy combines human and machine intelligence in order to maximise accuracy. Active learning (AL) is a cornerstone of the human-in-the-loop strategy and is the process of deciding which data to sample for human annotation during the loop (Budd et al., 2021). At every iteration of the AL loop, the model is expected to become more accurate.
+       This work contains the proposal for a deep interactive, AL refinement network for medical image segmentation. The dataset used will be the BraTS (Brain Tumour Segmentation) 2016 and 2017 datasets from the medical segmentation decathlon website (Simpson et al., 2019). The BraTS datasets holds 484 pixel-labelled brain MRI volumes in the training set and 337 MRI volumes in the testing set. The class labels for the test set are unavailable hence the training set will have to be split into training and testing sets. The MRI volumes themselves are each of size 240 x 240 x 155 pixels and include the T1-weighted, T2-weighted, T1-Gd and Fluid-Attenuated Inversion Recovery (FLAIR) MRI modalities. The tumours are labelled according to their tumour region type e.g. edema, non-enhancing and enhancing tumour. Necrotic tumour tissue is not labelled in this dataset.
 
 ### Built With
 
-This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
-* [Bootstrap](https://getbootstrap.com)
-* [JQuery](https://jquery.com)
-* [Laravel](https://laravel.com)
+* [Python](https://www.python.org/)
 
 
 
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+INSERT INSTRUCTIONS
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
+* numpy
   ```sh
-  npm install npm@latest -g
+  pip install numpy
+  ```
+ * matplotlib
+  ```sh
+  pip install matplotlib
+  ```
+ * nibabel
+  ```sh
+  pip install nibabel
+  ```
+ * SimpleITK
+  ```sh
+  pip install sitk
+  ```
+ * PyTorch
+  ```sh
+  pip install torch
   ```
 
 ### Installation
-
+INSERT INSTRUCTIONS
 1. Get a free API Key at [https://example.com](https://example.com)
 2. Clone the repo
    ```sh
@@ -173,42 +161,6 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
+Aaron - [Email](Aaron.Mir@city.ac.uk)
 
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
-
-
-
-<!-- ACKNOWLEDGEMENTS -->
-## Acknowledgements
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [Img Shields](https://shields.io)
-* [Choose an Open Source License](https://choosealicense.com)
-* [GitHub Pages](https://pages.github.com)
-* [Animate.css](https://daneden.github.io/animate.css)
-* [Loaders.css](https://connoratherton.com/loaders)
-* [Slick Carousel](https://kenwheeler.github.io/slick)
-* [Smooth Scroll](https://github.com/cferdinandi/smooth-scroll)
-* [Sticky Kit](http://leafo.net/sticky-kit)
-* [JVectorMap](http://jvectormap.com)
-* [Font Awesome](https://fontawesome.com)
-
-
-
-
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
-[contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
-[forks-url]: https://github.com/othneildrew/Best-README-Template/network/members
-[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
-[stars-url]: https://github.com/othneildrew/Best-README-Template/stargazers
-[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
-[issues-url]: https://github.com/othneildrew/Best-README-Template/issues
-[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
-[license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/othneildrew
-[product-screenshot]: images/screenshot.png
+Project Link: [https://github.com/Assassinsarms/Deep-Active-Learning-Network-for-Medical-Image-Segmentation](https://github.com/Assassinsarms/Deep-Active-Learning-Network-for-Medical-Image-Segmentation)

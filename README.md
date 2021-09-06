@@ -60,7 +60,6 @@
 </details>
 
 
-
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
@@ -74,7 +73,6 @@ Medical image segmentation plays a vital role in computer-aided diagnosis (CAD) 
 * [Python](https://www.python.org/)
 
 
-
 <!-- GETTING STARTED -->
 ## Getting Started
 
@@ -82,7 +80,7 @@ INSERT INSTRUCTIONS
 
 ### Prerequisites
 
-* numpy
+  * numpy
   ```sh
   pip install numpy
   ```
@@ -103,23 +101,18 @@ INSERT INSTRUCTIONS
   pip install torch
   ```
 
-### Installation
-INSERT INSTRUCTIONS
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/your_username_/Project-Name.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```JS
-   const API_KEY = 'ENTER YOUR API';
-   ```
+### Instructions
 
-
+1. Download the BRATS 2018 data from [INSERT ONEDRIVE LINK]
+2. Run train_val.py to train the base-segmentation model and save the weights.
+3. Configure the parameters in the active_learning.py main() function e.g. number of experiments, number of iterations etc.
+   ```sh
+   https://github.com/Assassinsarms/Deep-Active-Learning-Network-for-Medical-Image-Segmentation/blob/master/train_val.py
+   ```
+4. Run the active_learning.py file to begin active learning iterations and experiments.
+   ```sh
+   https://github.com/Assassinsarms/Deep-Active-Learning-Network-for-Medical-Image-Segmentation/blob/master/active_learning.py
+   ```
 
 <!-- USAGE EXAMPLES -->
 ## Usage
@@ -127,28 +120,6 @@ INSERT INSTRUCTIONS
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
 
 _For more examples, please refer to the [Documentation](https://example.com)_
-
-
-
-<!-- ROADMAP -->
-## Roadmap
-
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a list of proposed features (and known issues).
-
-
-
-<!-- CONTRIBUTING -->
-## Contributing
-
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-
 
 <!-- LICENSE -->
 ## License
@@ -160,6 +131,6 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Aaron - [Email](Aaron.Mir@city.ac.uk)
+Aaron - Aaron.Mir@city.ac.uk
 
 Project Link: [https://github.com/Assassinsarms/Deep-Active-Learning-Network-for-Medical-Image-Segmentation](https://github.com/Assassinsarms/Deep-Active-Learning-Network-for-Medical-Image-Segmentation)

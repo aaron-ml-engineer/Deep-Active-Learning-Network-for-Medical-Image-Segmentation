@@ -3,7 +3,7 @@
 <p align="center">
   <a href="">
    <a href="https://github.com/Assassinsarms/Deep-Active-Learning-Network-for-Medical-Image-Segmentation">
-    <img src="images/Logo.jpg" alt="Logo" width="80" height="80">
+    <img src="images/Logo.jpg" alt="Logo" width="160" height="160">
   </a>
 
   <h3 align="center">Deep-Active-Learning-Network-for-Brain-MRI-Segmentation</h3>

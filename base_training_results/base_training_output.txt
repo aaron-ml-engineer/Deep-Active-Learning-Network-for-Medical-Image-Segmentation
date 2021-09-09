@@ -1,0 +1,449 @@
+2021-09-07 14:59:33,152 - INFO - train_num:800
+2021-09-07 14:59:33,152 - INFO - val_num:200
+2021-09-07 14:59:34,346 - INFO - => Creating 2D UNET Model
+2021-09-07 14:59:34,347 - INFO - 39397123
+2021-09-07 14:59:34,349 - INFO - 'Epoch [0/200]
+2021-09-07 14:59:43,921 - INFO - loss 1.1625 - iou 0.2182 - dice - 0.0989 - val_loss 1.7049 - val_iou 0.0494 - val_dice 0.0860
+2021-09-07 14:59:44,268 - INFO - => best model has been saved
+2021-09-07 14:59:44,310 - INFO - 'Epoch [1/200]
+2021-09-07 14:59:52,460 - INFO - loss 1.0161 - iou 0.3528 - dice - 0.1504 - val_loss 0.9619 - val_iou 0.4058 - val_dice 0.1841
+2021-09-07 14:59:52,799 - INFO - => best model has been saved
+2021-09-07 14:59:52,845 - INFO - 'Epoch [2/200]
+2021-09-07 15:00:01,512 - INFO - loss 0.8969 - iou 0.4072 - dice - 0.2258 - val_loss 0.8435 - val_iou 0.4658 - val_dice 0.2622
+2021-09-07 15:00:01,876 - INFO - => best model has been saved
+2021-09-07 15:00:01,921 - INFO - 'Epoch [3/200]
+2021-09-07 15:00:10,009 - INFO - loss 0.7687 - iou 0.4725 - dice - 0.3428 - val_loss 0.7248 - val_iou 0.4930 - val_dice 0.3839
+2021-09-07 15:00:10,346 - INFO - => best model has been saved
+2021-09-07 15:00:10,391 - INFO - 'Epoch [4/200]
+2021-09-07 15:00:18,426 - INFO - loss 0.6638 - iou 0.4846 - dice - 0.4539 - val_loss 0.6565 - val_iou 0.5381 - val_dice 0.4745
+2021-09-07 15:00:18,768 - INFO - => best model has been saved
+2021-09-07 15:00:18,813 - INFO - 'Epoch [5/200]
+2021-09-07 15:00:27,136 - INFO - loss 0.5779 - iou 0.5148 - dice - 0.5505 - val_loss 0.6214 - val_iou 0.4026 - val_dice 0.5044
+2021-09-07 15:00:27,525 - INFO - => best model has been saved
+2021-09-07 15:00:27,570 - INFO - 'Epoch [6/200]
+2021-09-07 15:00:36,398 - INFO - loss 0.5148 - iou 0.5488 - dice - 0.6267 - val_loss 0.5269 - val_iou 0.5465 - val_dice 0.6374
+2021-09-07 15:00:36,824 - INFO - => best model has been saved
+2021-09-07 15:00:36,878 - INFO - 'Epoch [7/200]
+2021-09-07 15:00:45,691 - INFO - loss 0.4861 - iou 0.5450 - dice - 0.6499 - val_loss 0.4908 - val_iou 0.5655 - val_dice 0.6717
+2021-09-07 15:00:46,050 - INFO - => best model has been saved
+2021-09-07 15:00:46,098 - INFO - 'Epoch [8/200]
+2021-09-07 15:00:55,502 - INFO - loss 0.4441 - iou 0.5813 - dice - 0.6947 - val_loss 0.4560 - val_iou 0.5914 - val_dice 0.7122
+2021-09-07 15:00:55,906 - INFO - => best model has been saved
+2021-09-07 15:00:55,960 - INFO - 'Epoch [9/200]
+2021-09-07 15:01:05,194 - INFO - loss 0.4420 - iou 0.5703 - dice - 0.6920 - val_loss 0.5050 - val_iou 0.5297 - val_dice 0.6652
+2021-09-07 15:01:05,261 - INFO - 'Epoch [10/200]
+2021-09-07 15:01:14,241 - INFO - loss 0.4173 - iou 0.5952 - dice - 0.7168 - val_loss 0.4203 - val_iou 0.6304 - val_dice 0.7425
+2021-09-07 15:01:14,640 - INFO - => best model has been saved
+2021-09-07 15:01:14,694 - INFO - 'Epoch [11/200]
+2021-09-07 15:01:23,893 - INFO - loss 0.4012 - iou 0.6056 - dice - 0.7310 - val_loss 0.5133 - val_iou 0.4998 - val_dice 0.6511
+2021-09-07 15:01:23,957 - INFO - 'Epoch [12/200]
+2021-09-07 15:01:32,942 - INFO - loss 0.4141 - iou 0.5924 - dice - 0.7206 - val_loss 0.4181 - val_iou 0.6372 - val_dice 0.7423
+2021-09-07 15:01:33,008 - INFO - 'Epoch [13/200]
+2021-09-07 15:01:42,037 - INFO - loss 0.4129 - iou 0.5867 - dice - 0.7199 - val_loss 0.4419 - val_iou 0.5925 - val_dice 0.7231
+2021-09-07 15:01:42,108 - INFO - 'Epoch [14/200]
+2021-09-07 15:01:51,023 - INFO - loss 0.3875 - iou 0.6223 - dice - 0.7486 - val_loss 0.4370 - val_iou 0.5790 - val_dice 0.7157
+2021-09-07 15:01:51,094 - INFO - 'Epoch [15/200]
+2021-09-07 15:02:00,203 - INFO - loss 0.3783 - iou 0.6239 - dice - 0.7503 - val_loss 0.3920 - val_iou 0.6529 - val_dice 0.7732
+2021-09-07 15:02:00,605 - INFO - => best model has been saved
+2021-09-07 15:02:00,657 - INFO - 'Epoch [16/200]
+2021-09-07 15:02:09,680 - INFO - loss 0.3747 - iou 0.6271 - dice - 0.7552 - val_loss 0.3920 - val_iou 0.6517 - val_dice 0.7742
+2021-09-07 15:02:10,070 - INFO - => best model has been saved
+2021-09-07 15:02:10,122 - INFO - 'Epoch [17/200]
+2021-09-07 15:02:19,077 - INFO - loss 0.3644 - iou 0.6415 - dice - 0.7661 - val_loss 0.3819 - val_iou 0.6583 - val_dice 0.7806
+2021-09-07 15:02:19,466 - INFO - => best model has been saved
+2021-09-07 15:02:19,521 - INFO - 'Epoch [18/200]
+2021-09-07 15:02:28,655 - INFO - loss 0.3643 - iou 0.6374 - dice - 0.7644 - val_loss 0.3924 - val_iou 0.6354 - val_dice 0.7639
+2021-09-07 15:02:28,728 - INFO - 'Epoch [19/200]
+2021-09-07 15:02:37,705 - INFO - loss 0.3617 - iou 0.6456 - dice - 0.7708 - val_loss 0.4110 - val_iou 0.6272 - val_dice 0.7606
+2021-09-07 15:02:37,769 - INFO - 'Epoch [20/200]
+2021-09-07 15:02:46,862 - INFO - loss 0.3581 - iou 0.6556 - dice - 0.7773 - val_loss 0.3691 - val_iou 0.6937 - val_dice 0.8059
+2021-09-07 15:02:47,245 - INFO - => best model has been saved
+2021-09-07 15:02:47,295 - INFO - 'Epoch [21/200]
+2021-09-07 15:02:56,187 - INFO - loss 0.3474 - iou 0.6650 - dice - 0.7871 - val_loss 0.3898 - val_iou 0.6505 - val_dice 0.7792
+2021-09-07 15:02:56,250 - INFO - 'Epoch [22/200]
+2021-09-07 15:03:05,715 - INFO - loss 0.3424 - iou 0.6683 - dice - 0.7889 - val_loss 0.3719 - val_iou 0.6652 - val_dice 0.7902
+2021-09-07 15:03:05,779 - INFO - 'Epoch [23/200]
+2021-09-07 15:03:15,288 - INFO - loss 0.3388 - iou 0.6735 - dice - 0.7943 - val_loss 0.3814 - val_iou 0.6572 - val_dice 0.7831
+2021-09-07 15:03:15,355 - INFO - 'Epoch [24/200]
+2021-09-07 15:03:24,320 - INFO - loss 0.3348 - iou 0.6735 - dice - 0.7938 - val_loss 0.3535 - val_iou 0.7018 - val_dice 0.8138
+2021-09-07 15:03:24,711 - INFO - => best model has been saved
+2021-09-07 15:03:24,762 - INFO - 'Epoch [25/200]
+2021-09-07 15:03:33,890 - INFO - loss 0.3238 - iou 0.6876 - dice - 0.8039 - val_loss 0.3502 - val_iou 0.7004 - val_dice 0.8153
+2021-09-07 15:03:34,286 - INFO - => best model has been saved
+2021-09-07 15:03:34,340 - INFO - 'Epoch [26/200]
+2021-09-07 15:03:43,258 - INFO - loss 0.3283 - iou 0.6808 - dice - 0.7998 - val_loss 0.3785 - val_iou 0.6595 - val_dice 0.7844
+2021-09-07 15:03:43,324 - INFO - 'Epoch [27/200]
+2021-09-07 15:03:52,554 - INFO - loss 0.3353 - iou 0.6702 - dice - 0.7924 - val_loss 0.3613 - val_iou 0.6979 - val_dice 0.8101
+2021-09-07 15:03:52,630 - INFO - 'Epoch [28/200]
+2021-09-07 15:04:01,833 - INFO - loss 0.3257 - iou 0.6848 - dice - 0.8019 - val_loss 0.3670 - val_iou 0.6796 - val_dice 0.8020
+2021-09-07 15:04:01,890 - INFO - 'Epoch [29/200]
+2021-09-07 15:04:10,233 - INFO - loss 0.3260 - iou 0.6846 - dice - 0.8020 - val_loss 0.3504 - val_iou 0.7017 - val_dice 0.8153
+2021-09-07 15:04:10,604 - INFO - => best model has been saved
+2021-09-07 15:04:10,651 - INFO - 'Epoch [30/200]
+2021-09-07 15:04:20,126 - INFO - loss 0.3205 - iou 0.6941 - dice - 0.8093 - val_loss 0.3395 - val_iou 0.7068 - val_dice 0.8204
+2021-09-07 15:04:20,618 - INFO - => best model has been saved
+2021-09-07 15:04:20,690 - INFO - 'Epoch [31/200]
+2021-09-07 15:04:30,189 - INFO - loss 0.3185 - iou 0.6942 - dice - 0.8102 - val_loss 0.3574 - val_iou 0.6927 - val_dice 0.8102
+2021-09-07 15:04:30,257 - INFO - 'Epoch [32/200]
+2021-09-07 15:04:39,429 - INFO - loss 0.3209 - iou 0.6957 - dice - 0.8112 - val_loss 0.3569 - val_iou 0.6965 - val_dice 0.8138
+2021-09-07 15:04:39,499 - INFO - 'Epoch [33/200]
+2021-09-07 15:04:48,497 - INFO - loss 0.3189 - iou 0.6913 - dice - 0.8074 - val_loss 0.3410 - val_iou 0.7043 - val_dice 0.8185
+2021-09-07 15:04:48,569 - INFO - 'Epoch [34/200]
+2021-09-07 15:04:57,795 - INFO - loss 0.3125 - iou 0.7034 - dice - 0.8161 - val_loss 0.3543 - val_iou 0.6830 - val_dice 0.8051
+2021-09-07 15:04:57,865 - INFO - 'Epoch [35/200]
+2021-09-07 15:05:06,822 - INFO - loss 0.3070 - iou 0.7004 - dice - 0.8152 - val_loss 0.3454 - val_iou 0.7070 - val_dice 0.8200
+2021-09-07 15:05:06,893 - INFO - 'Epoch [36/200]
+2021-09-07 15:05:15,906 - INFO - loss 0.3103 - iou 0.7010 - dice - 0.8155 - val_loss 0.3422 - val_iou 0.7014 - val_dice 0.8178
+2021-09-07 15:05:15,979 - INFO - 'Epoch [37/200]
+2021-09-07 15:05:25,014 - INFO - loss 0.3138 - iou 0.6981 - dice - 0.8136 - val_loss 0.3405 - val_iou 0.7051 - val_dice 0.8183
+2021-09-07 15:05:25,084 - INFO - 'Epoch [38/200]
+2021-09-07 15:05:34,190 - INFO - loss 0.3067 - iou 0.6984 - dice - 0.8136 - val_loss 0.3397 - val_iou 0.7184 - val_dice 0.8279
+2021-09-07 15:05:34,593 - INFO - => best model has been saved
+2021-09-07 15:05:34,644 - INFO - 'Epoch [39/200]
+2021-09-07 15:05:43,754 - INFO - loss 0.3004 - iou 0.7095 - dice - 0.8208 - val_loss 0.3395 - val_iou 0.7095 - val_dice 0.8237
+2021-09-07 15:05:43,824 - INFO - 'Epoch [40/200]
+2021-09-07 15:05:52,820 - INFO - loss 0.2924 - iou 0.7220 - dice - 0.8303 - val_loss 0.3631 - val_iou 0.6951 - val_dice 0.8132
+2021-09-07 15:05:52,895 - INFO - 'Epoch [41/200]
+2021-09-07 15:06:02,120 - INFO - loss 0.2940 - iou 0.7185 - dice - 0.8281 - val_loss 0.3526 - val_iou 0.6912 - val_dice 0.8099
+2021-09-07 15:06:02,186 - INFO - 'Epoch [42/200]
+2021-09-07 15:06:11,112 - INFO - loss 0.2971 - iou 0.7172 - dice - 0.8272 - val_loss 0.3392 - val_iou 0.7059 - val_dice 0.8208
+2021-09-07 15:06:11,181 - INFO - 'Epoch [43/200]
+2021-09-07 15:06:20,336 - INFO - loss 0.3061 - iou 0.7032 - dice - 0.8172 - val_loss 0.3531 - val_iou 0.6869 - val_dice 0.8055
+2021-09-07 15:06:20,412 - INFO - 'Epoch [44/200]
+2021-09-07 15:06:29,456 - INFO - loss 0.2985 - iou 0.7126 - dice - 0.8236 - val_loss 0.3581 - val_iou 0.7021 - val_dice 0.8189
+2021-09-07 15:06:29,526 - INFO - 'Epoch [45/200]
+2021-09-07 15:06:38,664 - INFO - loss 0.2948 - iou 0.7172 - dice - 0.8275 - val_loss 0.3467 - val_iou 0.7059 - val_dice 0.8205
+2021-09-07 15:06:38,738 - INFO - 'Epoch [46/200]
+2021-09-07 15:06:47,740 - INFO - loss 0.2900 - iou 0.7235 - dice - 0.8317 - val_loss 0.3299 - val_iou 0.7189 - val_dice 0.8301
+2021-09-07 15:06:48,139 - INFO - => best model has been saved
+2021-09-07 15:06:48,192 - INFO - 'Epoch [47/200]
+2021-09-07 15:06:57,263 - INFO - loss 0.2818 - iou 0.7268 - dice - 0.8337 - val_loss 0.3403 - val_iou 0.7202 - val_dice 0.8286
+2021-09-07 15:06:57,332 - INFO - 'Epoch [48/200]
+2021-09-07 15:07:06,613 - INFO - loss 0.2829 - iou 0.7248 - dice - 0.8326 - val_loss 0.3357 - val_iou 0.7133 - val_dice 0.8258
+2021-09-07 15:07:06,693 - INFO - 'Epoch [49/200]
+2021-09-07 15:07:15,743 - INFO - loss 0.2976 - iou 0.7139 - dice - 0.8248 - val_loss 0.3437 - val_iou 0.7026 - val_dice 0.8194
+2021-09-07 15:07:15,817 - INFO - 'Epoch [50/200]
+2021-09-07 15:07:24,430 - INFO - loss 0.2866 - iou 0.7228 - dice - 0.8315 - val_loss 0.3337 - val_iou 0.7104 - val_dice 0.8228
+2021-09-07 15:07:24,489 - INFO - 'Epoch [51/200]
+2021-09-07 15:07:32,825 - INFO - loss 0.2906 - iou 0.7206 - dice - 0.8301 - val_loss 0.3332 - val_iou 0.7211 - val_dice 0.8326
+2021-09-07 15:07:33,183 - INFO - => best model has been saved
+2021-09-07 15:07:33,229 - INFO - 'Epoch [52/200]
+2021-09-07 15:07:42,139 - INFO - loss 0.2809 - iou 0.7274 - dice - 0.8348 - val_loss 0.3286 - val_iou 0.7218 - val_dice 0.8320
+2021-09-07 15:07:42,199 - INFO - 'Epoch [53/200]
+2021-09-07 15:07:51,233 - INFO - loss 0.2734 - iou 0.7337 - dice - 0.8392 - val_loss 0.3256 - val_iou 0.7221 - val_dice 0.8324
+2021-09-07 15:07:51,300 - INFO - 'Epoch [54/200]
+2021-09-07 15:08:00,216 - INFO - loss 0.2745 - iou 0.7337 - dice - 0.8389 - val_loss 0.3562 - val_iou 0.6898 - val_dice 0.8109
+2021-09-07 15:08:00,279 - INFO - 'Epoch [55/200]
+2021-09-07 15:08:09,126 - INFO - loss 0.2919 - iou 0.7127 - dice - 0.8246 - val_loss 0.3620 - val_iou 0.6872 - val_dice 0.8070
+2021-09-07 15:08:09,189 - INFO - 'Epoch [56/200]
+2021-09-07 15:08:18,033 - INFO - loss 0.2822 - iou 0.7259 - dice - 0.8332 - val_loss 0.3307 - val_iou 0.7143 - val_dice 0.8272
+2021-09-07 15:08:18,101 - INFO - 'Epoch [57/200]
+2021-09-07 15:08:27,193 - INFO - loss 0.2759 - iou 0.7300 - dice - 0.8360 - val_loss 0.3183 - val_iou 0.7312 - val_dice 0.8378
+2021-09-07 15:08:27,593 - INFO - => best model has been saved
+2021-09-07 15:08:27,644 - INFO - 'Epoch [58/200]
+2021-09-07 15:08:36,602 - INFO - loss 0.2696 - iou 0.7439 - dice - 0.8460 - val_loss 0.3328 - val_iou 0.7158 - val_dice 0.8289
+2021-09-07 15:08:36,664 - INFO - 'Epoch [59/200]
+2021-09-07 15:08:45,580 - INFO - loss 0.2729 - iou 0.7373 - dice - 0.8414 - val_loss 0.3296 - val_iou 0.7232 - val_dice 0.8331
+2021-09-07 15:08:45,642 - INFO - 'Epoch [60/200]
+2021-09-07 15:08:54,417 - INFO - loss 0.2734 - iou 0.7323 - dice - 0.8382 - val_loss 0.3395 - val_iou 0.7219 - val_dice 0.8323
+2021-09-07 15:08:54,481 - INFO - 'Epoch [61/200]
+2021-09-07 15:09:03,268 - INFO - loss 0.2736 - iou 0.7379 - dice - 0.8420 - val_loss 0.3274 - val_iou 0.7191 - val_dice 0.8285
+2021-09-07 15:09:03,331 - INFO - 'Epoch [62/200]
+2021-09-07 15:09:12,103 - INFO - loss 0.2687 - iou 0.7430 - dice - 0.8448 - val_loss 0.3383 - val_iou 0.7159 - val_dice 0.8285
+2021-09-07 15:09:12,170 - INFO - 'Epoch [63/200]
+2021-09-07 15:09:20,937 - INFO - loss 0.2730 - iou 0.7363 - dice - 0.8407 - val_loss 0.3306 - val_iou 0.7161 - val_dice 0.8281
+2021-09-07 15:09:20,999 - INFO - 'Epoch [64/200]
+2021-09-07 15:09:29,793 - INFO - loss 0.2695 - iou 0.7400 - dice - 0.8436 - val_loss 0.3271 - val_iou 0.7178 - val_dice 0.8300
+2021-09-07 15:09:29,852 - INFO - 'Epoch [65/200]
+2021-09-07 15:09:38,627 - INFO - loss 0.2575 - iou 0.7465 - dice - 0.8474 - val_loss 0.3394 - val_iou 0.7147 - val_dice 0.8274
+2021-09-07 15:09:38,689 - INFO - 'Epoch [66/200]
+2021-09-07 15:09:47,466 - INFO - loss 0.2644 - iou 0.7461 - dice - 0.8476 - val_loss 0.3204 - val_iou 0.7303 - val_dice 0.8394
+2021-09-07 15:09:47,825 - INFO - => best model has been saved
+2021-09-07 15:09:47,873 - INFO - 'Epoch [67/200]
+2021-09-07 15:09:56,660 - INFO - loss 0.2643 - iou 0.7420 - dice - 0.8449 - val_loss 0.3179 - val_iou 0.7304 - val_dice 0.8384
+2021-09-07 15:09:56,721 - INFO - 'Epoch [68/200]
+2021-09-07 15:10:05,472 - INFO - loss 0.2572 - iou 0.7515 - dice - 0.8513 - val_loss 0.3175 - val_iou 0.7256 - val_dice 0.8344
+2021-09-07 15:10:05,532 - INFO - 'Epoch [69/200]
+2021-09-07 15:10:14,329 - INFO - loss 0.2562 - iou 0.7505 - dice - 0.8507 - val_loss 0.3346 - val_iou 0.6998 - val_dice 0.8168
+2021-09-07 15:10:14,395 - INFO - 'Epoch [70/200]
+2021-09-07 15:10:23,127 - INFO - loss 0.2507 - iou 0.7548 - dice - 0.8532 - val_loss 0.3601 - val_iou 0.6861 - val_dice 0.8096
+2021-09-07 15:10:23,187 - INFO - 'Epoch [71/200]
+2021-09-07 15:10:31,984 - INFO - loss 0.2626 - iou 0.7446 - dice - 0.8470 - val_loss 0.3745 - val_iou 0.6702 - val_dice 0.7980
+2021-09-07 15:10:32,047 - INFO - 'Epoch [72/200]
+2021-09-07 15:10:40,806 - INFO - loss 0.2612 - iou 0.7426 - dice - 0.8455 - val_loss 0.3174 - val_iou 0.7385 - val_dice 0.8437
+2021-09-07 15:10:41,165 - INFO - => best model has been saved
+2021-09-07 15:10:41,213 - INFO - 'Epoch [73/200]
+2021-09-07 15:10:49,973 - INFO - loss 0.2568 - iou 0.7509 - dice - 0.8510 - val_loss 0.3169 - val_iou 0.7318 - val_dice 0.8401
+2021-09-07 15:10:50,033 - INFO - 'Epoch [74/200]
+2021-09-07 15:10:58,819 - INFO - loss 0.2533 - iou 0.7517 - dice - 0.8519 - val_loss 0.3129 - val_iou 0.7346 - val_dice 0.8423
+2021-09-07 15:10:58,882 - INFO - 'Epoch [75/200]
+2021-09-07 15:11:07,647 - INFO - loss 0.2455 - iou 0.7607 - dice - 0.8577 - val_loss 0.3195 - val_iou 0.7374 - val_dice 0.8436
+2021-09-07 15:11:07,715 - INFO - 'Epoch [76/200]
+2021-09-07 15:11:16,488 - INFO - loss 0.2445 - iou 0.7627 - dice - 0.8591 - val_loss 0.3162 - val_iou 0.7385 - val_dice 0.8441
+2021-09-07 15:11:16,850 - INFO - => best model has been saved
+2021-09-07 15:11:16,898 - INFO - 'Epoch [77/200]
+2021-09-07 15:11:25,687 - INFO - loss 0.2499 - iou 0.7542 - dice - 0.8532 - val_loss 0.3657 - val_iou 0.6683 - val_dice 0.7966
+2021-09-07 15:11:25,747 - INFO - 'Epoch [78/200]
+2021-09-07 15:11:34,587 - INFO - loss 0.2472 - iou 0.7575 - dice - 0.8554 - val_loss 0.3246 - val_iou 0.7204 - val_dice 0.8318
+2021-09-07 15:11:34,649 - INFO - 'Epoch [79/200]
+2021-09-07 15:11:43,440 - INFO - loss 0.2475 - iou 0.7583 - dice - 0.8560 - val_loss 0.3172 - val_iou 0.7348 - val_dice 0.8420
+2021-09-07 15:11:43,503 - INFO - 'Epoch [80/200]
+2021-09-07 15:11:52,315 - INFO - loss 0.2512 - iou 0.7572 - dice - 0.8555 - val_loss 0.3203 - val_iou 0.7338 - val_dice 0.8416
+2021-09-07 15:11:52,378 - INFO - 'Epoch [81/200]
+2021-09-07 15:12:01,257 - INFO - loss 0.2433 - iou 0.7604 - dice - 0.8577 - val_loss 0.3102 - val_iou 0.7333 - val_dice 0.8404
+2021-09-07 15:12:01,318 - INFO - 'Epoch [82/200]
+2021-09-07 15:12:10,184 - INFO - loss 0.2483 - iou 0.7629 - dice - 0.8591 - val_loss 0.3119 - val_iou 0.7346 - val_dice 0.8417
+2021-09-07 15:12:10,245 - INFO - 'Epoch [83/200]
+2021-09-07 15:12:19,460 - INFO - loss 0.2412 - iou 0.7614 - dice - 0.8582 - val_loss 0.3201 - val_iou 0.7253 - val_dice 0.8347
+2021-09-07 15:12:19,523 - INFO - 'Epoch [84/200]
+2021-09-07 15:12:28,560 - INFO - loss 0.2486 - iou 0.7583 - dice - 0.8558 - val_loss 0.3274 - val_iou 0.7103 - val_dice 0.8234
+2021-09-07 15:12:28,622 - INFO - 'Epoch [85/200]
+2021-09-07 15:12:37,987 - INFO - loss 0.2352 - iou 0.7678 - dice - 0.8622 - val_loss 0.3126 - val_iou 0.7347 - val_dice 0.8420
+2021-09-07 15:12:38,053 - INFO - 'Epoch [86/200]
+2021-09-07 15:12:47,678 - INFO - loss 0.2368 - iou 0.7672 - dice - 0.8617 - val_loss 0.3115 - val_iou 0.7274 - val_dice 0.8370
+2021-09-07 15:12:47,740 - INFO - 'Epoch [87/200]
+2021-09-07 15:12:56,869 - INFO - loss 0.2379 - iou 0.7684 - dice - 0.8626 - val_loss 0.3225 - val_iou 0.7191 - val_dice 0.8326
+2021-09-07 15:12:56,926 - INFO - 'Epoch [88/200]
+2021-09-07 15:13:05,318 - INFO - loss 0.2342 - iou 0.7704 - dice - 0.8642 - val_loss 0.3192 - val_iou 0.7385 - val_dice 0.8444
+2021-09-07 15:13:05,677 - INFO - => best model has been saved
+2021-09-07 15:13:05,722 - INFO - 'Epoch [89/200]
+2021-09-07 15:13:14,098 - INFO - loss 0.2405 - iou 0.7701 - dice - 0.8639 - val_loss 0.3121 - val_iou 0.7292 - val_dice 0.8378
+2021-09-07 15:13:14,157 - INFO - 'Epoch [90/200]
+2021-09-07 15:13:22,540 - INFO - loss 0.2368 - iou 0.7692 - dice - 0.8631 - val_loss 0.2998 - val_iou 0.7445 - val_dice 0.8488
+2021-09-07 15:13:22,884 - INFO - => best model has been saved
+2021-09-07 15:13:22,929 - INFO - 'Epoch [91/200]
+2021-09-07 15:13:31,279 - INFO - loss 0.2298 - iou 0.7721 - dice - 0.8652 - val_loss 0.3039 - val_iou 0.7442 - val_dice 0.8478
+2021-09-07 15:13:31,334 - INFO - 'Epoch [92/200]
+2021-09-07 15:13:39,696 - INFO - loss 0.2338 - iou 0.7717 - dice - 0.8645 - val_loss 0.3174 - val_iou 0.7254 - val_dice 0.8352
+2021-09-07 15:13:39,752 - INFO - 'Epoch [93/200]
+2021-09-07 15:13:48,088 - INFO - loss 0.2293 - iou 0.7756 - dice - 0.8674 - val_loss 0.3096 - val_iou 0.7363 - val_dice 0.8435
+2021-09-07 15:13:48,144 - INFO - 'Epoch [94/200]
+2021-09-07 15:13:56,672 - INFO - loss 0.2319 - iou 0.7739 - dice - 0.8665 - val_loss 0.3141 - val_iou 0.7415 - val_dice 0.8472
+2021-09-07 15:13:56,730 - INFO - 'Epoch [95/200]
+2021-09-07 15:14:05,403 - INFO - loss 0.2261 - iou 0.7820 - dice - 0.8719 - val_loss 0.3117 - val_iou 0.7422 - val_dice 0.8475
+2021-09-07 15:14:05,461 - INFO - 'Epoch [96/200]
+2021-09-07 15:14:14,306 - INFO - loss 0.2247 - iou 0.7780 - dice - 0.8690 - val_loss 0.3216 - val_iou 0.7296 - val_dice 0.8389
+2021-09-07 15:14:14,364 - INFO - 'Epoch [97/200]
+2021-09-07 15:14:23,143 - INFO - loss 0.2341 - iou 0.7665 - dice - 0.8619 - val_loss 0.3169 - val_iou 0.7348 - val_dice 0.8435
+2021-09-07 15:14:23,204 - INFO - 'Epoch [98/200]
+2021-09-07 15:14:31,924 - INFO - loss 0.2303 - iou 0.7758 - dice - 0.8682 - val_loss 0.3148 - val_iou 0.7396 - val_dice 0.8446
+2021-09-07 15:14:31,980 - INFO - 'Epoch [99/200]
+2021-09-07 15:14:40,814 - INFO - loss 0.2222 - iou 0.7804 - dice - 0.8704 - val_loss 0.3062 - val_iou 0.7480 - val_dice 0.8513
+2021-09-07 15:14:41,154 - INFO - => best model has been saved
+2021-09-07 15:14:41,199 - INFO - 'Epoch [100/200]
+2021-09-07 15:14:50,356 - INFO - loss 0.2208 - iou 0.7864 - dice - 0.8747 - val_loss 0.3112 - val_iou 0.7439 - val_dice 0.8490
+2021-09-07 15:14:50,416 - INFO - 'Epoch [101/200]
+2021-09-07 15:14:58,626 - INFO - loss 0.2131 - iou 0.7880 - dice - 0.8757 - val_loss 0.3099 - val_iou 0.7322 - val_dice 0.8414
+2021-09-07 15:14:58,681 - INFO - 'Epoch [102/200]
+2021-09-07 15:15:06,718 - INFO - loss 0.2213 - iou 0.7836 - dice - 0.8727 - val_loss 0.3113 - val_iou 0.7406 - val_dice 0.8460
+2021-09-07 15:15:06,775 - INFO - 'Epoch [103/200]
+2021-09-07 15:15:14,798 - INFO - loss 0.2201 - iou 0.7849 - dice - 0.8739 - val_loss 0.3067 - val_iou 0.7418 - val_dice 0.8474
+2021-09-07 15:15:14,852 - INFO - 'Epoch [104/200]
+2021-09-07 15:15:22,829 - INFO - loss 0.2241 - iou 0.7760 - dice - 0.8676 - val_loss 0.3137 - val_iou 0.7427 - val_dice 0.8482
+2021-09-07 15:15:22,885 - INFO - 'Epoch [105/200]
+2021-09-07 15:15:30,993 - INFO - loss 0.2169 - iou 0.7854 - dice - 0.8743 - val_loss 0.3132 - val_iou 0.7449 - val_dice 0.8500
+2021-09-07 15:15:31,050 - INFO - 'Epoch [106/200]
+2021-09-07 15:15:40,109 - INFO - loss 0.2125 - iou 0.7921 - dice - 0.8784 - val_loss 0.3185 - val_iou 0.7277 - val_dice 0.8380
+2021-09-07 15:15:40,168 - INFO - 'Epoch [107/200]
+2021-09-07 15:15:48,917 - INFO - loss 0.2208 - iou 0.7848 - dice - 0.8737 - val_loss 0.3068 - val_iou 0.7462 - val_dice 0.8506
+2021-09-07 15:15:48,980 - INFO - 'Epoch [108/200]
+2021-09-07 15:15:57,765 - INFO - loss 0.2102 - iou 0.7956 - dice - 0.8808 - val_loss 0.3151 - val_iou 0.7298 - val_dice 0.8395
+2021-09-07 15:15:57,823 - INFO - 'Epoch [109/200]
+2021-09-07 15:16:06,234 - INFO - loss 0.2083 - iou 0.7921 - dice - 0.8780 - val_loss 0.3206 - val_iou 0.7329 - val_dice 0.8417
+2021-09-07 15:16:06,290 - INFO - 'Epoch [110/200]
+2021-09-07 15:16:14,779 - INFO - loss 0.2056 - iou 0.7978 - dice - 0.8821 - val_loss 0.3063 - val_iou 0.7428 - val_dice 0.8483
+2021-09-07 15:16:14,836 - INFO - 'Epoch [111/200]
+2021-09-07 15:16:23,194 - INFO - loss 0.2077 - iou 0.7951 - dice - 0.8804 - val_loss 0.3055 - val_iou 0.7498 - val_dice 0.8531
+2021-09-07 15:16:23,542 - INFO - => best model has been saved
+2021-09-07 15:16:23,586 - INFO - 'Epoch [112/200]
+2021-09-07 15:16:32,330 - INFO - loss 0.2070 - iou 0.7977 - dice - 0.8819 - val_loss 0.3218 - val_iou 0.7320 - val_dice 0.8414
+2021-09-07 15:16:32,391 - INFO - 'Epoch [113/200]
+2021-09-07 15:16:40,870 - INFO - loss 0.2056 - iou 0.7963 - dice - 0.8813 - val_loss 0.3045 - val_iou 0.7508 - val_dice 0.8533
+2021-09-07 15:16:41,228 - INFO - => best model has been saved
+2021-09-07 15:16:41,273 - INFO - 'Epoch [114/200]
+2021-09-07 15:16:49,778 - INFO - loss 0.2071 - iou 0.7970 - dice - 0.8815 - val_loss 0.3024 - val_iou 0.7496 - val_dice 0.8528
+2021-09-07 15:16:49,836 - INFO - 'Epoch [115/200]
+2021-09-07 15:16:58,523 - INFO - loss 0.2026 - iou 0.8009 - dice - 0.8843 - val_loss 0.3015 - val_iou 0.7491 - val_dice 0.8522
+2021-09-07 15:16:58,579 - INFO - 'Epoch [116/200]
+2021-09-07 15:17:06,978 - INFO - loss 0.2045 - iou 0.7994 - dice - 0.8829 - val_loss 0.3151 - val_iou 0.7288 - val_dice 0.8386
+2021-09-07 15:17:07,035 - INFO - 'Epoch [117/200]
+2021-09-07 15:17:15,140 - INFO - loss 0.2057 - iou 0.7995 - dice - 0.8831 - val_loss 0.3139 - val_iou 0.7245 - val_dice 0.8360
+2021-09-07 15:17:15,198 - INFO - 'Epoch [118/200]
+2021-09-07 15:17:24,106 - INFO - loss 0.2013 - iou 0.8019 - dice - 0.8847 - val_loss 0.3092 - val_iou 0.7446 - val_dice 0.8495
+2021-09-07 15:17:24,164 - INFO - 'Epoch [119/200]
+2021-09-07 15:17:32,199 - INFO - loss 0.1996 - iou 0.7998 - dice - 0.8836 - val_loss 0.3172 - val_iou 0.7351 - val_dice 0.8433
+2021-09-07 15:17:32,262 - INFO - 'Epoch [120/200]
+2021-09-07 15:17:40,486 - INFO - loss 0.2056 - iou 0.7982 - dice - 0.8828 - val_loss 0.3032 - val_iou 0.7473 - val_dice 0.8509
+2021-09-07 15:17:40,542 - INFO - 'Epoch [121/200]
+2021-09-07 15:17:48,955 - INFO - loss 0.1994 - iou 0.8049 - dice - 0.8865 - val_loss 0.3191 - val_iou 0.7443 - val_dice 0.8493
+2021-09-07 15:17:49,011 - INFO - 'Epoch [122/200]
+2021-09-07 15:17:57,056 - INFO - loss 0.2002 - iou 0.8000 - dice - 0.8838 - val_loss 0.3100 - val_iou 0.7399 - val_dice 0.8458
+2021-09-07 15:17:57,112 - INFO - 'Epoch [123/200]
+2021-09-07 15:18:05,773 - INFO - loss 0.1963 - iou 0.8047 - dice - 0.8866 - val_loss 0.3081 - val_iou 0.7303 - val_dice 0.8396
+2021-09-07 15:18:05,829 - INFO - 'Epoch [124/200]
+2021-09-07 15:18:14,226 - INFO - loss 0.1909 - iou 0.8115 - dice - 0.8908 - val_loss 0.3011 - val_iou 0.7461 - val_dice 0.8509
+2021-09-07 15:18:14,290 - INFO - 'Epoch [125/200]
+2021-09-07 15:18:22,826 - INFO - loss 0.1926 - iou 0.8112 - dice - 0.8905 - val_loss 0.3050 - val_iou 0.7426 - val_dice 0.8481
+2021-09-07 15:18:22,882 - INFO - 'Epoch [126/200]
+2021-09-07 15:18:30,956 - INFO - loss 0.1984 - iou 0.8036 - dice - 0.8857 - val_loss 0.3068 - val_iou 0.7523 - val_dice 0.8544
+2021-09-07 15:18:31,293 - INFO - => best model has been saved
+2021-09-07 15:18:31,337 - INFO - 'Epoch [127/200]
+2021-09-07 15:18:39,306 - INFO - loss 0.1927 - iou 0.8100 - dice - 0.8897 - val_loss 0.3091 - val_iou 0.7446 - val_dice 0.8494
+2021-09-07 15:18:39,362 - INFO - 'Epoch [128/200]
+2021-09-07 15:18:48,135 - INFO - loss 0.1943 - iou 0.8076 - dice - 0.8884 - val_loss 0.3268 - val_iou 0.7268 - val_dice 0.8382
+2021-09-07 15:18:48,194 - INFO - 'Epoch [129/200]
+2021-09-07 15:18:56,417 - INFO - loss 0.1941 - iou 0.8078 - dice - 0.8884 - val_loss 0.3195 - val_iou 0.7340 - val_dice 0.8422
+2021-09-07 15:18:56,481 - INFO - 'Epoch [130/200]
+2021-09-07 15:19:04,987 - INFO - loss 0.2079 - iou 0.7964 - dice - 0.8814 - val_loss 0.3098 - val_iou 0.7448 - val_dice 0.8499
+2021-09-07 15:19:05,044 - INFO - 'Epoch [131/200]
+2021-09-07 15:19:13,501 - INFO - loss 0.2016 - iou 0.8009 - dice - 0.8840 - val_loss 0.3190 - val_iou 0.7332 - val_dice 0.8422
+2021-09-07 15:19:13,558 - INFO - 'Epoch [132/200]
+2021-09-07 15:19:22,062 - INFO - loss 0.1962 - iou 0.8036 - dice - 0.8862 - val_loss 0.3121 - val_iou 0.7366 - val_dice 0.8447
+2021-09-07 15:19:22,120 - INFO - 'Epoch [133/200]
+2021-09-07 15:19:30,458 - INFO - loss 0.1931 - iou 0.8105 - dice - 0.8902 - val_loss 0.3070 - val_iou 0.7401 - val_dice 0.8459
+2021-09-07 15:19:30,516 - INFO - 'Epoch [134/200]
+2021-09-07 15:19:38,852 - INFO - loss 0.1987 - iou 0.8082 - dice - 0.8887 - val_loss 0.3053 - val_iou 0.7549 - val_dice 0.8564
+2021-09-07 15:19:39,191 - INFO - => best model has been saved
+2021-09-07 15:19:39,236 - INFO - 'Epoch [135/200]
+2021-09-07 15:19:47,588 - INFO - loss 0.1970 - iou 0.8086 - dice - 0.8890 - val_loss 0.3200 - val_iou 0.7246 - val_dice 0.8363
+2021-09-07 15:19:47,647 - INFO - 'Epoch [136/200]
+2021-09-07 15:19:55,997 - INFO - loss 0.2000 - iou 0.8046 - dice - 0.8872 - val_loss 0.3053 - val_iou 0.7411 - val_dice 0.8483
+2021-09-07 15:19:56,053 - INFO - 'Epoch [137/200]
+2021-09-07 15:20:04,392 - INFO - loss 0.1918 - iou 0.8106 - dice - 0.8906 - val_loss 0.3140 - val_iou 0.7387 - val_dice 0.8454
+2021-09-07 15:20:04,451 - INFO - 'Epoch [138/200]
+2021-09-07 15:20:12,852 - INFO - loss 0.1919 - iou 0.8072 - dice - 0.8884 - val_loss 0.3076 - val_iou 0.7403 - val_dice 0.8460
+2021-09-07 15:20:12,909 - INFO - 'Epoch [139/200]
+2021-09-07 15:20:21,305 - INFO - loss 0.1859 - iou 0.8183 - dice - 0.8950 - val_loss 0.3013 - val_iou 0.7447 - val_dice 0.8495
+2021-09-07 15:20:21,363 - INFO - 'Epoch [140/200]
+2021-09-07 15:20:29,756 - INFO - loss 0.1837 - iou 0.8171 - dice - 0.8941 - val_loss 0.2921 - val_iou 0.7567 - val_dice 0.8574
+2021-09-07 15:20:30,103 - INFO - => best model has been saved
+2021-09-07 15:20:30,147 - INFO - 'Epoch [141/200]
+2021-09-07 15:20:38,079 - INFO - loss 0.1886 - iou 0.8144 - dice - 0.8930 - val_loss 0.3016 - val_iou 0.7476 - val_dice 0.8518
+2021-09-07 15:20:38,135 - INFO - 'Epoch [142/200]
+2021-09-07 15:20:46,283 - INFO - loss 0.1785 - iou 0.8228 - dice - 0.8978 - val_loss 0.2957 - val_iou 0.7589 - val_dice 0.8590
+2021-09-07 15:20:46,629 - INFO - => best model has been saved
+2021-09-07 15:20:46,674 - INFO - 'Epoch [143/200]
+2021-09-07 15:20:54,625 - INFO - loss 0.1769 - iou 0.8258 - dice - 0.8997 - val_loss 0.3001 - val_iou 0.7466 - val_dice 0.8514
+2021-09-07 15:20:54,685 - INFO - 'Epoch [144/200]
+2021-09-07 15:21:02,629 - INFO - loss 0.1982 - iou 0.8011 - dice - 0.8844 - val_loss 0.3035 - val_iou 0.7506 - val_dice 0.8530
+2021-09-07 15:21:02,686 - INFO - 'Epoch [145/200]
+2021-09-07 15:21:10,621 - INFO - loss 0.1870 - iou 0.8110 - dice - 0.8906 - val_loss 0.2972 - val_iou 0.7451 - val_dice 0.8495
+2021-09-07 15:21:10,678 - INFO - 'Epoch [146/200]
+2021-09-07 15:21:18,631 - INFO - loss 0.1796 - iou 0.8211 - dice - 0.8969 - val_loss 0.3045 - val_iou 0.7528 - val_dice 0.8553
+2021-09-07 15:21:18,690 - INFO - 'Epoch [147/200]
+2021-09-07 15:21:26,699 - INFO - loss 0.1801 - iou 0.8181 - dice - 0.8953 - val_loss 0.3098 - val_iou 0.7369 - val_dice 0.8451
+2021-09-07 15:21:26,760 - INFO - 'Epoch [148/200]
+2021-09-07 15:21:34,749 - INFO - loss 0.1797 - iou 0.8223 - dice - 0.8977 - val_loss 0.3040 - val_iou 0.7484 - val_dice 0.8525
+2021-09-07 15:21:34,803 - INFO - 'Epoch [149/200]
+2021-09-07 15:21:42,741 - INFO - loss 0.1752 - iou 0.8273 - dice - 0.9007 - val_loss 0.2996 - val_iou 0.7604 - val_dice 0.8604
+2021-09-07 15:21:43,081 - INFO - => best model has been saved
+2021-09-07 15:21:43,124 - INFO - 'Epoch [150/200]
+2021-09-07 15:21:51,074 - INFO - loss 0.1769 - iou 0.8248 - dice - 0.8993 - val_loss 0.2950 - val_iou 0.7555 - val_dice 0.8570
+2021-09-07 15:21:51,132 - INFO - 'Epoch [151/200]
+2021-09-07 15:21:59,113 - INFO - loss 0.1723 - iou 0.8255 - dice - 0.8997 - val_loss 0.2951 - val_iou 0.7589 - val_dice 0.8593
+2021-09-07 15:21:59,175 - INFO - 'Epoch [152/200]
+2021-09-07 15:22:07,914 - INFO - loss 0.1739 - iou 0.8268 - dice - 0.9004 - val_loss 0.2988 - val_iou 0.7526 - val_dice 0.8552
+2021-09-07 15:22:07,970 - INFO - 'Epoch [153/200]
+2021-09-07 15:22:16,707 - INFO - loss 0.1701 - iou 0.8287 - dice - 0.9022 - val_loss 0.2962 - val_iou 0.7605 - val_dice 0.8605
+2021-09-07 15:22:17,046 - INFO - => best model has been saved
+2021-09-07 15:22:17,091 - INFO - 'Epoch [154/200]
+2021-09-07 15:22:25,665 - INFO - loss 0.1660 - iou 0.8321 - dice - 0.9039 - val_loss 0.2918 - val_iou 0.7593 - val_dice 0.8597
+2021-09-07 15:22:25,722 - INFO - 'Epoch [155/200]
+2021-09-07 15:22:34,259 - INFO - loss 0.1655 - iou 0.8350 - dice - 0.9055 - val_loss 0.2948 - val_iou 0.7615 - val_dice 0.8609
+2021-09-07 15:22:34,624 - INFO - => best model has been saved
+2021-09-07 15:22:34,669 - INFO - 'Epoch [156/200]
+2021-09-07 15:22:43,314 - INFO - loss 0.1662 - iou 0.8337 - dice - 0.9047 - val_loss 0.3060 - val_iou 0.7499 - val_dice 0.8539
+2021-09-07 15:22:43,371 - INFO - 'Epoch [157/200]
+2021-09-07 15:22:51,952 - INFO - loss 0.1627 - iou 0.8361 - dice - 0.9064 - val_loss 0.3117 - val_iou 0.7477 - val_dice 0.8522
+2021-09-07 15:22:52,006 - INFO - 'Epoch [158/200]
+2021-09-07 15:23:00,568 - INFO - loss 0.1676 - iou 0.8334 - dice - 0.9045 - val_loss 0.3018 - val_iou 0.7542 - val_dice 0.8560
+2021-09-07 15:23:00,624 - INFO - 'Epoch [159/200]
+2021-09-07 15:23:09,247 - INFO - loss 0.1663 - iou 0.8324 - dice - 0.9040 - val_loss 0.2907 - val_iou 0.7611 - val_dice 0.8605
+2021-09-07 15:23:09,303 - INFO - 'Epoch [160/200]
+2021-09-07 15:23:17,905 - INFO - loss 0.1714 - iou 0.8317 - dice - 0.9038 - val_loss 0.2916 - val_iou 0.7583 - val_dice 0.8585
+2021-09-07 15:23:17,961 - INFO - 'Epoch [161/200]
+2021-09-07 15:23:26,506 - INFO - loss 0.1681 - iou 0.8335 - dice - 0.9047 - val_loss 0.3059 - val_iou 0.7522 - val_dice 0.8549
+2021-09-07 15:23:26,591 - INFO - 'Epoch [162/200]
+2021-09-07 15:23:35,157 - INFO - loss 0.1644 - iou 0.8366 - dice - 0.9067 - val_loss 0.2980 - val_iou 0.7583 - val_dice 0.8594
+2021-09-07 15:23:35,213 - INFO - 'Epoch [163/200]
+2021-09-07 15:23:43,781 - INFO - loss 0.1636 - iou 0.8386 - dice - 0.9078 - val_loss 0.3010 - val_iou 0.7537 - val_dice 0.8560
+2021-09-07 15:23:43,839 - INFO - 'Epoch [164/200]
+2021-09-07 15:23:52,368 - INFO - loss 0.1641 - iou 0.8371 - dice - 0.9070 - val_loss 0.2984 - val_iou 0.7564 - val_dice 0.8575
+2021-09-07 15:23:52,427 - INFO - 'Epoch [165/200]
+2021-09-07 15:24:00,984 - INFO - loss 0.1635 - iou 0.8365 - dice - 0.9065 - val_loss 0.2984 - val_iou 0.7571 - val_dice 0.8585
+2021-09-07 15:24:01,040 - INFO - 'Epoch [166/200]
+2021-09-07 15:24:09,605 - INFO - loss 0.1613 - iou 0.8399 - dice - 0.9087 - val_loss 0.3012 - val_iou 0.7544 - val_dice 0.8567
+2021-09-07 15:24:09,663 - INFO - 'Epoch [167/200]
+2021-09-07 15:24:18,183 - INFO - loss 0.1573 - iou 0.8394 - dice - 0.9083 - val_loss 0.2948 - val_iou 0.7558 - val_dice 0.8574
+2021-09-07 15:24:18,241 - INFO - 'Epoch [168/200]
+2021-09-07 15:24:26,878 - INFO - loss 0.1577 - iou 0.8415 - dice - 0.9097 - val_loss 0.3124 - val_iou 0.7468 - val_dice 0.8517
+2021-09-07 15:24:26,940 - INFO - 'Epoch [169/200]
+2021-09-07 15:24:35,525 - INFO - loss 0.1626 - iou 0.8406 - dice - 0.9092 - val_loss 0.2924 - val_iou 0.7614 - val_dice 0.8614
+2021-09-07 15:24:35,873 - INFO - => best model has been saved
+2021-09-07 15:24:35,918 - INFO - 'Epoch [170/200]
+2021-09-07 15:24:44,455 - INFO - loss 0.1641 - iou 0.8326 - dice - 0.9046 - val_loss 0.3290 - val_iou 0.7153 - val_dice 0.8308
+2021-09-07 15:24:44,513 - INFO - 'Epoch [171/200]
+2021-09-07 15:24:53,099 - INFO - loss 0.1647 - iou 0.8318 - dice - 0.9040 - val_loss 0.2946 - val_iou 0.7628 - val_dice 0.8620
+2021-09-07 15:24:53,446 - INFO - => best model has been saved
+2021-09-07 15:24:53,490 - INFO - 'Epoch [172/200]
+2021-09-07 15:25:02,102 - INFO - loss 0.1575 - iou 0.8417 - dice - 0.9099 - val_loss 0.2927 - val_iou 0.7644 - val_dice 0.8634
+2021-09-07 15:25:02,451 - INFO - => best model has been saved
+2021-09-07 15:25:02,496 - INFO - 'Epoch [173/200]
+2021-09-07 15:25:11,091 - INFO - loss 0.1526 - iou 0.8461 - dice - 0.9123 - val_loss 0.2991 - val_iou 0.7598 - val_dice 0.8603
+2021-09-07 15:25:11,148 - INFO - 'Epoch [174/200]
+2021-09-07 15:25:19,887 - INFO - loss 0.1653 - iou 0.8368 - dice - 0.9069 - val_loss 0.2995 - val_iou 0.7571 - val_dice 0.8587
+2021-09-07 15:25:19,943 - INFO - 'Epoch [175/200]
+2021-09-07 15:25:28,691 - INFO - loss 0.1633 - iou 0.8371 - dice - 0.9074 - val_loss 0.3083 - val_iou 0.7405 - val_dice 0.8478
+2021-09-07 15:25:28,749 - INFO - 'Epoch [176/200]
+2021-09-07 15:25:37,366 - INFO - loss 0.1553 - iou 0.8412 - dice - 0.9096 - val_loss 0.2923 - val_iou 0.7654 - val_dice 0.8638
+2021-09-07 15:25:37,719 - INFO - => best model has been saved
+2021-09-07 15:25:37,764 - INFO - 'Epoch [177/200]
+2021-09-07 15:25:46,878 - INFO - loss 0.1548 - iou 0.8440 - dice - 0.9111 - val_loss 0.3062 - val_iou 0.7538 - val_dice 0.8567
+2021-09-07 15:25:46,940 - INFO - 'Epoch [178/200]
+2021-09-07 15:25:55,915 - INFO - loss 0.1512 - iou 0.8481 - dice - 0.9137 - val_loss 0.2971 - val_iou 0.7620 - val_dice 0.8616
+2021-09-07 15:25:55,971 - INFO - 'Epoch [179/200]
+2021-09-07 15:26:04,632 - INFO - loss 0.1512 - iou 0.8471 - dice - 0.9130 - val_loss 0.2885 - val_iou 0.7639 - val_dice 0.8627
+2021-09-07 15:26:04,692 - INFO - 'Epoch [180/200]
+2021-09-07 15:26:13,289 - INFO - loss 0.1831 - iou 0.8272 - dice - 0.9011 - val_loss 0.3039 - val_iou 0.7496 - val_dice 0.8533
+2021-09-07 15:26:13,347 - INFO - 'Epoch [181/200]
+2021-09-07 15:26:21,970 - INFO - loss 0.1817 - iou 0.8218 - dice - 0.8982 - val_loss 0.3056 - val_iou 0.7516 - val_dice 0.8549
+2021-09-07 15:26:22,028 - INFO - 'Epoch [182/200]
+2021-09-07 15:26:30,642 - INFO - loss 0.1634 - iou 0.8345 - dice - 0.9055 - val_loss 0.3215 - val_iou 0.7397 - val_dice 0.8472
+2021-09-07 15:26:30,702 - INFO - 'Epoch [183/200]
+2021-09-07 15:26:39,309 - INFO - loss 0.1531 - iou 0.8468 - dice - 0.9129 - val_loss 0.2911 - val_iou 0.7648 - val_dice 0.8633
+2021-09-07 15:26:39,370 - INFO - 'Epoch [184/200]
+2021-09-07 15:26:48,100 - INFO - loss 0.1518 - iou 0.8478 - dice - 0.9135 - val_loss 0.2961 - val_iou 0.7659 - val_dice 0.8639
+2021-09-07 15:26:48,445 - INFO - => best model has been saved
+2021-09-07 15:26:48,490 - INFO - 'Epoch [185/200]
+2021-09-07 15:26:57,026 - INFO - loss 0.1551 - iou 0.8457 - dice - 0.9124 - val_loss 0.3070 - val_iou 0.7504 - val_dice 0.8547
+2021-09-07 15:26:57,085 - INFO - 'Epoch [186/200]
+2021-09-07 15:27:05,694 - INFO - loss 0.1570 - iou 0.8432 - dice - 0.9108 - val_loss 0.3120 - val_iou 0.7456 - val_dice 0.8515
+2021-09-07 15:27:05,752 - INFO - 'Epoch [187/200]
+2021-09-07 15:27:14,401 - INFO - loss 0.1570 - iou 0.8422 - dice - 0.9105 - val_loss 0.2980 - val_iou 0.7589 - val_dice 0.8596
+2021-09-07 15:27:14,463 - INFO - 'Epoch [188/200]
+2021-09-07 15:27:23,077 - INFO - loss 0.1522 - iou 0.8477 - dice - 0.9135 - val_loss 0.3091 - val_iou 0.7562 - val_dice 0.8578
+2021-09-07 15:27:23,135 - INFO - 'Epoch [189/200]
+2021-09-07 15:27:31,818 - INFO - loss 0.1509 - iou 0.8477 - dice - 0.9137 - val_loss 0.2987 - val_iou 0.7618 - val_dice 0.8613
+2021-09-07 15:27:31,880 - INFO - 'Epoch [190/200]
+2021-09-07 15:27:40,492 - INFO - loss 0.1499 - iou 0.8502 - dice - 0.9149 - val_loss 0.3013 - val_iou 0.7680 - val_dice 0.8652
+2021-09-07 15:27:40,839 - INFO - => best model has been saved
+2021-09-07 15:27:40,884 - INFO - 'Epoch [191/200]
+2021-09-07 15:27:49,490 - INFO - loss 0.1462 - iou 0.8531 - dice - 0.9168 - val_loss 0.2991 - val_iou 0.7583 - val_dice 0.8596
+2021-09-07 15:27:49,546 - INFO - 'Epoch [192/200]
+2021-09-07 15:27:58,115 - INFO - loss 0.1434 - iou 0.8539 - dice - 0.9172 - val_loss 0.2975 - val_iou 0.7592 - val_dice 0.8602
+2021-09-07 15:27:58,172 - INFO - 'Epoch [193/200]
+2021-09-07 15:28:06,827 - INFO - loss 0.1411 - iou 0.8583 - dice - 0.9199 - val_loss 0.2932 - val_iou 0.7603 - val_dice 0.8603
+2021-09-07 15:28:06,886 - INFO - 'Epoch [194/200]
+2021-09-07 15:28:15,466 - INFO - loss 0.1485 - iou 0.8505 - dice - 0.9155 - val_loss 0.3010 - val_iou 0.7685 - val_dice 0.8657
+2021-09-07 15:28:15,808 - INFO - => best model has been saved
+2021-09-07 15:28:15,853 - INFO - 'Epoch [195/200]
+2021-09-07 15:28:24,498 - INFO - loss 0.1495 - iou 0.8503 - dice - 0.9153 - val_loss 0.3059 - val_iou 0.7590 - val_dice 0.8599
+2021-09-07 15:28:24,555 - INFO - 'Epoch [196/200]
+2021-09-07 15:28:33,193 - INFO - loss 0.1457 - iou 0.8526 - dice - 0.9164 - val_loss 0.2992 - val_iou 0.7586 - val_dice 0.8596
+2021-09-07 15:28:33,250 - INFO - 'Epoch [197/200]
+2021-09-07 15:28:41,822 - INFO - loss 0.1466 - iou 0.8520 - dice - 0.9161 - val_loss 0.3020 - val_iou 0.7567 - val_dice 0.8581
+2021-09-07 15:28:41,884 - INFO - 'Epoch [198/200]
+2021-09-07 15:28:50,447 - INFO - loss 0.1450 - iou 0.8515 - dice - 0.9159 - val_loss 0.2945 - val_iou 0.7615 - val_dice 0.8616
+2021-09-07 15:28:50,504 - INFO - 'Epoch [199/200]
+2021-09-07 15:28:59,044 - INFO - loss 0.1427 - iou 0.8544 - dice - 0.9177 - val_loss 0.2985 - val_iou 0.7602 - val_dice 0.8608
+Training and validation has taken ', 29.41, 'minutes to complete'

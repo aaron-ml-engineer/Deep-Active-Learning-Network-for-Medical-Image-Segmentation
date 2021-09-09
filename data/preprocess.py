@@ -17,10 +17,10 @@ t1_addon = "_t1.nii.gz"
 t1ce_addon = "_t1ce.nii.gz"
 t2_addon = "_t2.nii.gz"
 label_addon = "_seg.nii.gz"
-bratshgg_path = r"D:\AI MSc Large Modules\Masters_Project\CODE\Deep-Inter-Active-Refinement-Network-for-Medical-Image-Segmentation\data\MICCAI_BraTS_2018_Data_Training\HGG"
-bratslgg_path = r"D:\AI MSc Large Modules\Masters_Project\CODE\Deep-Inter-Active-Refinement-Network-for-Medical-Image-Segmentation\data\MICCAI_BraTS_2018_Data_Training\LGG"
-outputImg_path = r".\data\train\img"
-outputLabel_path = r".\data\train\label"
+bratshgg_path = r"D:\\AI MSc Large Modules\\Masters_Project\\CODE\Deep-Inter-Active-Refinement-Network-for-Medical-Image-Segmentation\data\\MICCAI_BraTS_2018_Data_Training\\HGG"
+bratslgg_path = r"D:\\AI MSc Large Modules\\Masters_Project\\CODE\Deep-Inter-Active-Refinement-Network-for-Medical-Image-Segmentation\\data\\MICCAI_BraTS_2018_Data_Training\\LGG"
+outputImg_path = r".\data\\all_data\\img"
+outputLabel_path = r".\\data\\all_data\\label"
 
 pathhgg_list = norm_intens_crop.file_name_path(bratshgg_path)
 pathlgg_list = norm_intens_crop.file_name_path(bratslgg_path)

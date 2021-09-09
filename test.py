@@ -4,10 +4,10 @@ import sys
 import time
 from collections import OrderedDict
 import imageio
-
 import numpy as np
 from skimage.io import imread, imsave 
 from hausdorff import hausdorff_distance
+import logging
 
 import torch
 import torchvision
@@ -30,18 +30,29 @@ from dataset import *
 def main():
     BATCH_SIZE = 32
     DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
-    TEST_IMG_DIR = glob(r'D:\\AI MSc Large Modules\\Masters_Project\\CODE\\Deep-Active-Learning-Network-for-Medical-Image-Segmentation\\data\\test\\img\\*')
-    TEST_LABEL_DIR = glob(r'D:\\AI MSc Large Modules\\Masters_Project\\CODE\\Deep-Active-Learning-Network-for-Medical-Image-Segmentation\\data\\test\\label\\*')
+    TEST_IMG_DIR = pickle.load(open('data\\test\\img\\'+'test.data', 'rb'))
+    TEST_LABEL_DIR = pickle.load(open('data\\test\\label\\'+'test.mask', 'rb'))
+
+    logging.basicConfig(level=logging.INFO,                                         # instantiate a logger
+                    format='%(asctime)s - %(levelname)s - %(message)s',
+                    filename='base_test_results/base_test_output.txt',
+                    filemode='w')
+    
+    console = logging.StreamHandler()                                               # define a new Handler to log to console as well
+    console.setLevel(logging.INFO)                                                  # set the logging level
+    formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')      # set a format which is the same for console use
+    console.setFormatter(formatter)                                                 # tell the handler to use this format
+    logging.getLogger('').addHandler(console)                                       # add the handler to the root logger
 
     test_img_paths =  TEST_IMG_DIR
     test_mask_paths = TEST_LABEL_DIR
-    print("test_num:%s"%str(len(test_img_paths)))
+    logging.info("test_num:%s"%str(len(test_img_paths)))
 
     # model, loss criteria, optimiser
     model = UNet2D(in_channels=4, out_channels=3).to(DEVICE) 
-    print("=> Creating 2D UNET Model")
+    logging.info("=> Creating 2D UNET Model")
     
-    model.load_state_dict(torch.load('models/2DUNET.pth'))
+    model.load_state_dict(torch.load('models/base_trained/2DUNET.pth'))
     model.eval()
 
     test_dataset = Dataset(test_img_paths, test_mask_paths)
@@ -94,7 +105,7 @@ def main():
     """
     convert the GT numpy format in the test set to a picture format and save 
     """
-    print("Saving GT, numpy to picture")
+    logging.info("Saving GT, numpy to picture")
     test_gt_path = 'base_test_results/output/' + 'GT/'
     if not os.path.exists(test_gt_path):
         os.mkdir(test_gt_path)
@@ -208,23 +219,48 @@ def main():
         sensitivity_n = sensitivity(etpbregion, etmaskregion)
         et_sensitivities.append(sensitivity_n)
 
-    print('WT Dice: %.4f' % np.mean(wt_dices))
-    print('TC Dice: %.4f' % np.mean(tc_dices))
-    print('ET Dice: %.4f' % np.mean(et_dices))
-    print("=============")
-    print('WT PPV: %.4f' % np.mean(wt_ppvs))
-    print('TC PPV: %.4f' % np.mean(tc_ppvs))
-    print('ET PPV: %.4f' % np.mean(et_ppvs))
-    print("=============")
-    print('WT sensitivity: %.4f' % np.mean(wt_sensitivities))
-    print('TC sensitivity: %.4f' % np.mean(tc_sensitivities))
-    print('ET sensitivity: %.4f' % np.mean(et_sensitivities))
-    print("=============")
-    print('WT Hausdorff: %.4f' % np.mean(wt_Hausdorff))
-    print('TC Hausdorff: %.4f' % np.mean(tc_Hausdorff))
-    print('ET Hausdorff: %.4f' % np.mean(et_Hausdorff))
-    print("=============")
+    logging.info('WT Dice: %.4f' % np.mean(wt_dices))
+    logging.info('TC Dice: %.4f' % np.mean(tc_dices))
+    logging.info('ET Dice: %.4f' % np.mean(et_dices))
+    logging.info("=============")
+    logging.info('WT PPV: %.4f' % np.mean(wt_ppvs))
+    logging.info('TC PPV: %.4f' % np.mean(tc_ppvs))
+    logging.info('ET PPV: %.4f' % np.mean(et_ppvs))
+    logging.info("=============")
+    logging.info('WT sensitivity: %.4f' % np.mean(wt_sensitivities))
+    logging.info('TC sensitivity: %.4f' % np.mean(tc_sensitivities))
+    logging.info('ET sensitivity: %.4f' % np.mean(et_sensitivities))
+    logging.info("=============")
+    logging.info('WT Hausdorff: %.4f' % np.mean(wt_Hausdorff))
+    logging.info('TC Hausdorff: %.4f' % np.mean(tc_Hausdorff))
+    logging.info('ET Hausdorff: %.4f' % np.mean(et_Hausdorff))
+    logging.info("=============")
 
-    
+    np.save('base_test_results' + '/mean_WT_dice.npy', np.mean(wt_dices)) 
+    np.save('base_test_results' + '/mean_TC_dice.npy', np.mean(tc_dices)) 
+    np.save('base_test_results' + '/mean_ET_dice.npy', np.mean(et_dices)) 
+    np.save('base_test_results' + '/mean_WT_PPV.npy', np.mean(wt_ppvs)) 
+    np.save('base_test_results' + '/mean_TC_PPV.npy', np.mean(tc_ppvs)) 
+    np.save('base_test_results' + '/mean_ET_PPV.npy', np.mean(et_ppvs)) 
+    np.save('base_test_results' + '/mean_WT_sensitivity.npy', np.mean(wt_sensitivities)) 
+    np.save('base_test_results' + '/mean_TC_sensitivity.npy', np.mean(tc_sensitivities)) 
+    np.save('base_test_results' + '/mean_ET_sensitivity.npy', np.mean(et_sensitivities)) 
+    np.save('base_test_results' + '/mean_WT_Hausdorff.npy', np.mean(wt_Hausdorff)) 
+    np.save('base_test_results' + '/mean_TC_Hausdorff.npy', np.mean(tc_Hausdorff)) 
+    np.save('base_test_results' + '/mean_ET_Hausdorff.npy', np.mean(et_Hausdorff)) 
+
+    np.save('base_test_results' + '/std_WT_dice.npy', np.std(wt_dices)) 
+    np.save('base_test_results' + '/std_TC_dice.npy', np.std(tc_dices)) 
+    np.save('base_test_results' + '/std_ET_dice.npy', np.std(et_dices)) 
+    np.save('base_test_results' + '/std_WT_PPV.npy', np.std(wt_ppvs)) 
+    np.save('base_test_results' + '/std_TC_PPV.npy', np.std(tc_ppvs)) 
+    np.save('base_test_results' + '/std_ET_PPV.npy', np.std(et_ppvs)) 
+    np.save('base_test_results' + '/std_WT_sensitivity.npy', np.std(wt_sensitivities)) 
+    np.save('base_test_results' + '/std_TC_sensitivity.npy', np.std(tc_sensitivities)) 
+    np.save('base_test_results' + '/std_ET_sensitivity.npy', np.std(et_sensitivities)) 
+    np.save('base_test_results' + '/std_WT_Hausdorff.npy', np.std(wt_Hausdorff)) 
+    np.save('base_test_results' + '/std_TC_Hausdorff.npy', np.std(tc_Hausdorff)) 
+    np.save('base_test_results' + '/std_ET_Hausdorff.npy', np.std(et_Hausdorff)) 
+
 if __name__ == '__main__':
     main()

@@ -3,6 +3,7 @@ import os
 import sys
 import time
 from collections import OrderedDict
+import logging
 
 import numpy as np
 from sklearn.model_selection import train_test_split
@@ -43,15 +44,15 @@ class AverageMeter(object):
         self.count += n
         self.avg = self.sum / self.count
 
-def train(train_loader, model, loss_fn, optimizer, device): #scaler
+def train(train_loader, model, loss_fn, optimizer, device): 
     losses = AverageMeter()
     ious = AverageMeter()
     dices = AverageMeter()
 
     model.train()                                       
-    for batch_idx, (data, labels) in enumerate(train_loader):    # train - used to have tqdm
-        data = data.to(device)#, dtype=torch.float)
-        labels = labels.to(device)#, dtype=torch.long) 
+    for batch_idx, (data, labels) in enumerate(train_loader):   
+        data = data.to(device)
+        labels = labels.to(device)
 
         model.zero_grad()
         # forward
@@ -68,11 +69,7 @@ def train(train_loader, model, loss_fn, optimizer, device): #scaler
         # backward
         optimizer.zero_grad()
         train_loss.backward()
-        optimizer.step()
-        # scaler.scale(train_loss).backward()
-        # scaler.step(optimizer)
-        # scaler.update()
-        #torch.cuda.empty_cache()                                       
+        optimizer.step()                                  
 
     log = OrderedDict([
     ('loss', losses.avg),
@@ -89,10 +86,9 @@ def validate(val_loader, model, loss_fn, device):
     model.eval()
 
     with torch.no_grad():
-        for batch_idx, (data, labels) in tqdm(enumerate(val_loader), total=len(val_loader)):        # val
-            data = data.to(device) # , dtype=torch.float)
-            labels = labels.to(device) # , dtype=torch.long) 
-            #with amp.autocast():
+        for batch_idx, (data, labels) in enumerate(val_loader):        
+            data = data.to(device) 
+            labels = labels.to(device) 
             
             preds = model(data)
             val_loss = loss_fn(preds, labels)
@@ -103,8 +99,6 @@ def validate(val_loader, model, loss_fn, device):
             ious.update(val_iou_scores, data.size(0))
             dices.update(val_dice_scores, data.size(0))
 
-            #torch.cuda.empty_cache()          
-
     log = OrderedDict([
     ('loss', losses.avg),
     ('iou', ious.avg),
@@ -113,25 +107,35 @@ def validate(val_loader, model, loss_fn, device):
 
     return log
                                 
-def main(): # data is split into train and validation (labelled, 30%), unlabelled (active learning, 50%), and test (20%)
-    EPOCHS = 10000
-    LEARNING_RATE = 1e-2          
-    EARLY_STOP = 20
+def main(): # data is split into train and validation (labelled, 20%), unlabelled (active learning, 60%), and test (15%)
+    EPOCHS = 200
+    LEARNING_RATE = 1e-3          
+    EARLY_STOP = 25
     DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
     BATCH_SIZE = 32
     NUM_WORKERS = 0
-    #SCALER = amp.GradScaler()
-    TRAIN_IMG_DIR = glob(r'D:\\AI MSc Large Modules\\Masters_Project\\CODE\\Deep-Active-Learning-Network-for-Medical-Image-Segmentation\\data\\train_val\\img\\*')
-    TRAIN_LABEL_DIR = glob(r'D:\\AI MSc Large Modules\\Masters_Project\\CODE\\Deep-Active-Learning-Network-for-Medical-Image-Segmentation\\data\\train_val\\label\\*')
+    TRAIN_IMG_DIR = pickle.load(open('data\\train_val\\img\\'+'train_val.data', 'rb'))
+    TRAIN_LABEL_DIR = pickle.load(open('data\\train_val\\label\\'+'train_val.mask', 'rb'))
+
+    logging.basicConfig(level=logging.INFO,                                         # instantiate a logger
+                    format='%(asctime)s - %(levelname)s - %(message)s',
+                    filename='base_training_results/base_training_output.txt',
+                    filemode='w')
+    
+    console = logging.StreamHandler()                                               # define a new Handler to log to console as well
+    console.setLevel(logging.INFO)                                                  # set the logging level
+    formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')      # set a format which is the same for console use
+    console.setFormatter(formatter)                                                 # tell the handler to use this format
+    logging.getLogger('').addHandler(console)                                       # add the handler to the root logger
 
     train_img_paths, val_img_paths, train_mask_paths, val_mask_paths = train_test_split(TRAIN_IMG_DIR, TRAIN_LABEL_DIR, test_size=0.2, random_state=41)
-    print("train_num:%s"%str(len(train_img_paths)))
-    print("val_num:%s"%str(len(val_img_paths)))
+    logging.info("train_num:%s"%str(len(train_img_paths)))
+    logging.info("val_num:%s"%str(len(val_img_paths)))
 
     # model, loss criteria, optimiser
     model = UNet2D(in_channels=4, out_channels=3).to(DEVICE) 
-    print("=> Creating 2D UNET Model")
-    print(count_params(model))
+    logging.info("=> Creating 2D UNET Model")
+    logging.info(count_params(model))
     loss_fn = BCEDiceLoss()
     optimizer = optim.Adam(filter(lambda p: p.requires_grad, model.parameters()), lr=LEARNING_RATE)
 
@@ -157,11 +161,11 @@ def main(): # data is split into train and validation (labelled, 30%), unlabelle
         'epoch', 'lr', 'loss', 'iou', 'dice', 'val_loss', 'val_iou', 'val_dice'
     ])
 
-    best_iou = 0
+    best_dice = 0
     trigger = 0
     start = time.time()
     for epoch in range(EPOCHS):
-        print("'Epoch [%d/%d]" %(epoch, EPOCHS))
+        logging.info("'Epoch [%d/%d]" %(epoch, EPOCHS))
 
         # train
         train_log = train(train_loader, model, loss_fn, optimizer, DEVICE)
@@ -169,7 +173,7 @@ def main(): # data is split into train and validation (labelled, 30%), unlabelle
         # validate
         val_log = validate(val_loader, model, loss_fn, DEVICE)
 
-        print('loss %.4f - iou %.4f - dice - %.4f - val_loss %.4f - val_iou %.4f - val_dice %.4f'
+        logging.info('loss %.4f - iou %.4f - dice - %.4f - val_loss %.4f - val_iou %.4f - val_dice %.4f'
             %(train_log['loss'], train_log['iou'], train_log['dice'], val_log['loss'], val_log['iou'], val_log['dice']))
         
         tmp = pd.Series([
@@ -188,27 +192,21 @@ def main(): # data is split into train and validation (labelled, 30%), unlabelle
 
         trigger += 1
 
-        if val_log['iou'] > best_iou:
-            torch.save(model.state_dict(), 'models/2DUNET.pth')
-            best_iou = val_log['iou']
-            print("=> best model has been saved")
+        if val_log['dice'] > best_dice:
+            torch.save(model.state_dict(), 'models/base_trained/2DUNET.pth')
+            best_dice = val_log['dice']
+            logging.info("=> best model has been saved")
             trigger = 0
 
         # early stopping
         if trigger >= EARLY_STOP:
-            print("=> early stopping")
+            logging.info("=> early stopping")
             break
-        
-        # if (epoch % 5==0):
-        #     checkpoint = {
-        #         "state_dict": model.state_dict(), 
-        #         "optimizer": optimizer.state_dict(),}
-        #     save_checkpoint(checkpoint, 'UNET_training.pth.tar')
 
         torch.cuda.empty_cache()
 
     end = time.time()
-    print('Training and validation has taken ', (end - start)/60, 'minutes to complete')
+    logging.info('Training and validation has taken ', str((end - start)/60), 'minutes to complete')
 
 if __name__ == '__main__':
     main()

@@ -105,8 +105,9 @@ Brain tumour segmentation plays a vital role in computer-aided diagnosis (CAD) b
   ```
 
 ### Instructions
+NOTE: the folders in the OneDrive accompany the files in this Github repo and contain larger folders.
 
-1. Download the original BraTS 2018 data titled 'MICCAI_BraTS_2018_Data_Training' or just the pre-processed data from https://cityuni-my.sharepoint.com/:f:/g/personal/aaron_mir_city_ac_uk/Eq3XOS6aqotKoW39chEi8RkBU2qcDcFYYOJ-ldfOm9W6dg?e=VW4Uqi
+1. Download the original BraTS 2018 data titled 'MICCAI_BraTS_2018_Data_Training' or just the pre-processed data in the 'all_data' folder from https://cityuni-my.sharepoint.com/:f:/g/personal/aaron_mir_city_ac_uk/Eq3XOS6aqotKoW39chEi8RkBU2qcDcFYYOJ-ldfOm9W6dg?e=VW4Uqi
 2. If downloading the original BraTS 2018 data, then you must first pre-process the data by running preprocess.py. (NOTE: This takes fairly long)
    ```sh
    https://github.com/Assassinsarms/Deep-Active-Learning-Network-for-Medical-Image-Segmentation/blob/master/preprocess.py
@@ -114,6 +115,9 @@ Brain tumour segmentation plays a vital role in computer-aided diagnosis (CAD) b
 3. Once you have the preprocessed data, run train_val.py to train the base-segmentation model and save the model weights [GPU is recommended]. 
    Alternatively you can skip this step and use the pre-trained model weights provided on the OneDrive link in the 'models/base_trained' folder.
    The data is already split into train/unlabelled/test but if you wish to create a new data split before running, then please run the data_split.ipynb file.
+  ```sh
+   https://github.com/Assassinsarms/Deep-Active-Learning-Network-for-Medical-Image-Segmentation/blob/master/data_split.ipynb
+   ```
    ```sh
    https://github.com/Assassinsarms/Deep-Active-Learning-Network-for-Medical-Image-Segmentation/blob/master/train_val.py
    ```
@@ -121,7 +125,7 @@ Brain tumour segmentation plays a vital role in computer-aided diagnosis (CAD) b
    ```sh
    https://github.com/Assassinsarms/Deep-Active-Learning-Network-for-Medical-Image-Segmentation/blob/master/test.py
    ```
-5. Configure the parameters in the active_learning.py main() function e.g. random/active, number of experiments, number of iterations etc. 
+5. Configure the parameters in the active_learning.py main() function e.g. random/active learning, number of experiments, number of iterations etc. 
    ```sh
    https://github.com/Assassinsarms/Deep-Active-Learning-Network-for-Medical-Image-Segmentation/blob/master/active_learning.py
    ```

@@ -50,6 +50,7 @@ Brain tumour segmentation plays a vital role in computer-aided diagnosis (CAD) b
   Deep learning has been trialled for automatic medical image segmentation and can provide a fast and reliable tool for this task. However, these networks require a lot of training data to achieve a high accuracy.
   Active learning is a dynamic form of model learning in which the model can request labels of the samples that it believes are the most informative for learning from an oracle (e.g. a human annotator). This offers a solution to alleviate the annotation burden associated with training a deep learning model. 
   In this work, a framework for AL has been developed specific to brain tumour segmentation. Instead of having a human annotator as an oracle, the oracle is simulated using the labels for the unlabelled dataset since they are available to us.
+  Coding references can be seen at the top of the active_learning.py file.
   
 ### Built With
 

@@ -112,7 +112,7 @@ Brain tumour segmentation plays a vital role in computer-aided diagnosis (CAD) b
    https://github.com/Assassinsarms/Deep-Active-Learning-Network-for-Medical-Image-Segmentation/blob/master/preprocess.py
    ```
 3. Once you have the preprocessed data, run train_val.py to train the base-segmentation model and save the model weights [GPU is recommended]. 
-   If you wish to create a  new train/unlabelled/test data split before running, then please run the data_split.ipynb file.
+   The data is already split into train/unlabelled/test but if you wish to create a new data split before running, then please run the data_split.ipynb file.
    ```sh
    https://github.com/Assassinsarms/Deep-Active-Learning-Network-for-Medical-Image-Segmentation/blob/master/train_val.py
    ```

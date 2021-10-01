@@ -161,7 +161,7 @@ def main():
     n_initial_unlabelled_samples = len(UNLABELLED_IMG_DIR)
     n_classes = 3                             # edema, non-enhancing tumour, enhancing tumour
     nb_experiments = 1                        # number of experiments
-    nb_active_learning_iter = 50              # number of active learning iterations e.g. 15
+    nb_active_learning_iter = 15              # number of active learning iterations e.g. 15
     nb_active_learning_iter_size = 30         # number of samples to be added to the training set after each active learning iteration - number of labels requested from oracle e.g. 30
     FORWARD_PASSES = 15                       # number of monte carlo predictions are used to calculate uncertainty e.g. 15
     EPOCHS = 200                              # early stopping epoch criteria for retraining during active or random learning

@@ -143,6 +143,8 @@ def main():
     Instructions:
         1. Change 'random_bool' to True or False depending on if you wish to run random learning or active learning iteration
         2. Configure 'nb_experiments', 'nb_active_learning_iter', nb_active_learning_iter_size', 'FORWARD_PASSES' parameters as desired
+    Note: computing MC predictions can take long depending on how many stochastic forward passes are used. Refer to 'active_learning_output.txt' to see 
+    training times
     """
     # load the training set paths, unlabelled set paths and test set paths 
     # these are lists containing paths to the slices selected for each dataset as computed in the 'data_split.ipynb' file.
@@ -161,9 +163,9 @@ def main():
     n_initial_unlabelled_samples = len(UNLABELLED_IMG_DIR)
     n_classes = 3                             # edema, non-enhancing tumour, enhancing tumour
     nb_experiments = 1                        # number of experiments
-    nb_active_learning_iter = 15              # number of active learning iterations e.g. 15
+    nb_active_learning_iter = 5               # number of active learning iterations e.g. 15
     nb_active_learning_iter_size = 30         # number of samples to be added to the training set after each active learning iteration - number of labels requested from oracle e.g. 30
-    FORWARD_PASSES = 15                       # number of monte carlo predictions are used to calculate uncertainty e.g. 15
+    FORWARD_PASSES = 2                        # number of monte carlo predictions are used to calculate uncertainty e.g. 15
     EPOCHS = 200                              # early stopping epoch criteria for retraining during active or random learning
     LEARNING_RATE = 1e-3
     EARLY_STOP = 25                           

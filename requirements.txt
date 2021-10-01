@@ -1,0 +1,13 @@
+numpy==1.19.5
+matplotlib==3.3.3
+scikit_image==0.18.1
+nibabel==3.2.1
+pandas==1.2.1
+torchvision==0.8.2+cu110
+tqdm==4.56.0
+torch==1.7.1+cu110
+hausdorff==0.2.6
+imageio==2.9.0
+scikit_learn==1.0
+SimpleITK==2.1.1
+skimage==0.0

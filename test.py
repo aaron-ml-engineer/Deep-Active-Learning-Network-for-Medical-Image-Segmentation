@@ -28,8 +28,14 @@ from model import *
 from dataset import *
 
 def main():
+    # testing is performed on the initially trained model for future comparison with the active learning and random learning model
+    # in addition to ensuring the model is working as expected
     BATCH_SIZE = 32
     DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
+
+    # load the test set paths
+    # these are lists containing paths to the slices selected for the test dataset as computed in the 'data_split.ipynb' file.
+    # all MRI slices can be found in the 'all_data' folder
     TEST_IMG_DIR = pickle.load(open('data\\test\\img\\'+'test.data', 'rb'))
     TEST_LABEL_DIR = pickle.load(open('data\\test\\label\\'+'test.mask', 'rb'))
 
@@ -104,6 +110,7 @@ def main():
 
     """
     convert the GT numpy format in the test set to a picture format and save 
+    saving these will be useful for testing at each learning iteration during random or active learning
     """
     logging.info("Saving GT, numpy to picture")
     test_gt_path = 'base_test_results/output/' + 'GT/'
@@ -140,17 +147,17 @@ def main():
         imageio.imwrite(test_gt_path + rgbName, GtColor)
 
     """
-    calculate metrics: Dice, Sensitivity, PPV, Hausdorff
+    calculate metrics: Dice, Precision, Recall, Hausdorff
     """
     wt_dices = []
     tc_dices = []
     et_dices = []
-    wt_sensitivities = []
-    tc_sensitivities = []
-    et_sensitivities = []
-    wt_ppvs = []
-    tc_ppvs = []
-    et_ppvs = []
+    wt_precision = []
+    tc_precision = []
+    et_precision = []
+    wt_recall = []
+    tc_recall = []
+    et_recall = []
     wt_Hausdorff = []
     tc_Hausdorff = []
     et_Hausdorff = []
@@ -192,44 +199,44 @@ def main():
         #Start calculating WT - whole tumour
         dice = dice_coef(wtpbregion,wtmaskregion)
         wt_dices.append(dice)
-        ppv_n = ppv(wtpbregion, wtmaskregion)
-        wt_ppvs.append(ppv_n)
+        precision_n = precision(wtpbregion, wtmaskregion)
+        wt_precision.append(precision_n)
         Hausdorff = hausdorff_distance(wtmaskregion, wtpbregion)
         wt_Hausdorff.append(Hausdorff)
-        sensitivity_n = sensitivity(wtpbregion, wtmaskregion)
-        wt_sensitivities.append(sensitivity_n)
+        recall_n = recall(wtpbregion, wtmaskregion)
+        wt_recall.append(recall_n)
 
         # Start calculating TC - tumour core
         dice = dice_coef(tcpbregion, tcmaskregion)
         tc_dices.append(dice)
-        ppv_n = ppv(tcpbregion, tcmaskregion)
-        tc_ppvs.append(ppv_n)
+        precision_n = precision(tcpbregion, tcmaskregion)
+        tc_precision.append(precision_n)
         Hausdorff = hausdorff_distance(tcmaskregion, tcpbregion)
         tc_Hausdorff.append(Hausdorff)
-        sensitivity_n = sensitivity(tcpbregion, tcmaskregion)
-        tc_sensitivities.append(sensitivity_n)
+        recall_n = recall(tcpbregion, tcmaskregion)
+        tc_recall.append(recall_n)
 
         # Start calculating ET - enhancing tumour
         dice = dice_coef(etpbregion, etmaskregion)
         et_dices.append(dice)
-        ppv_n = ppv(etpbregion, etmaskregion)
-        et_ppvs.append(ppv_n)
+        precision_n = precision(etpbregion, etmaskregion)
+        et_precision.append(precision_n)
         Hausdorff = hausdorff_distance(etmaskregion, etpbregion)
         et_Hausdorff.append(Hausdorff)
-        sensitivity_n = sensitivity(etpbregion, etmaskregion)
-        et_sensitivities.append(sensitivity_n)
+        recall_n = recall(etpbregion, etmaskregion)
+        et_recall.append(recall_n)
 
     logging.info('WT Dice: %.4f' % np.mean(wt_dices))
     logging.info('TC Dice: %.4f' % np.mean(tc_dices))
     logging.info('ET Dice: %.4f' % np.mean(et_dices))
     logging.info("=============")
-    logging.info('WT PPV: %.4f' % np.mean(wt_ppvs))
-    logging.info('TC PPV: %.4f' % np.mean(tc_ppvs))
-    logging.info('ET PPV: %.4f' % np.mean(et_ppvs))
+    logging.info('WT Precision: %.4f' % np.mean(wt_precision))
+    logging.info('TC Precision: %.4f' % np.mean(tc_precision))
+    logging.info('ET Precision: %.4f' % np.mean(et_precision))
     logging.info("=============")
-    logging.info('WT sensitivity: %.4f' % np.mean(wt_sensitivities))
-    logging.info('TC sensitivity: %.4f' % np.mean(tc_sensitivities))
-    logging.info('ET sensitivity: %.4f' % np.mean(et_sensitivities))
+    logging.info('WT Recall: %.4f' % np.mean(wt_recall))
+    logging.info('TC Recall: %.4f' % np.mean(tc_recall))
+    logging.info('ET Recall: %.4f' % np.mean(et_recall))
     logging.info("=============")
     logging.info('WT Hausdorff: %.4f' % np.mean(wt_Hausdorff))
     logging.info('TC Hausdorff: %.4f' % np.mean(tc_Hausdorff))
@@ -239,28 +246,15 @@ def main():
     np.save('base_test_results' + '/mean_WT_dice.npy', np.mean(wt_dices)) 
     np.save('base_test_results' + '/mean_TC_dice.npy', np.mean(tc_dices)) 
     np.save('base_test_results' + '/mean_ET_dice.npy', np.mean(et_dices)) 
-    np.save('base_test_results' + '/mean_WT_PPV.npy', np.mean(wt_ppvs)) 
-    np.save('base_test_results' + '/mean_TC_PPV.npy', np.mean(tc_ppvs)) 
-    np.save('base_test_results' + '/mean_ET_PPV.npy', np.mean(et_ppvs)) 
-    np.save('base_test_results' + '/mean_WT_sensitivity.npy', np.mean(wt_sensitivities)) 
-    np.save('base_test_results' + '/mean_TC_sensitivity.npy', np.mean(tc_sensitivities)) 
-    np.save('base_test_results' + '/mean_ET_sensitivity.npy', np.mean(et_sensitivities)) 
+    np.save('base_test_results' + '/mean_WT_precision.npy', np.mean(wt_precision)) 
+    np.save('base_test_results' + '/mean_TC_precision.npy', np.mean(tc_precision)) 
+    np.save('base_test_results' + '/mean_ET_precision.npy', np.mean(et_precision)) 
+    np.save('base_test_results' + '/mean_WT_recall.npy', np.mean(wt_recall)) 
+    np.save('base_test_results' + '/mean_TC_recall.npy', np.mean(tc_recall)) 
+    np.save('base_test_results' + '/mean_ET_recall.npy', np.mean(et_recall)) 
     np.save('base_test_results' + '/mean_WT_Hausdorff.npy', np.mean(wt_Hausdorff)) 
     np.save('base_test_results' + '/mean_TC_Hausdorff.npy', np.mean(tc_Hausdorff)) 
     np.save('base_test_results' + '/mean_ET_Hausdorff.npy', np.mean(et_Hausdorff)) 
-
-    np.save('base_test_results' + '/std_WT_dice.npy', np.std(wt_dices)) 
-    np.save('base_test_results' + '/std_TC_dice.npy', np.std(tc_dices)) 
-    np.save('base_test_results' + '/std_ET_dice.npy', np.std(et_dices)) 
-    np.save('base_test_results' + '/std_WT_PPV.npy', np.std(wt_ppvs)) 
-    np.save('base_test_results' + '/std_TC_PPV.npy', np.std(tc_ppvs)) 
-    np.save('base_test_results' + '/std_ET_PPV.npy', np.std(et_ppvs)) 
-    np.save('base_test_results' + '/std_WT_sensitivity.npy', np.std(wt_sensitivities)) 
-    np.save('base_test_results' + '/std_TC_sensitivity.npy', np.std(tc_sensitivities)) 
-    np.save('base_test_results' + '/std_ET_sensitivity.npy', np.std(et_sensitivities)) 
-    np.save('base_test_results' + '/std_WT_Hausdorff.npy', np.std(wt_Hausdorff)) 
-    np.save('base_test_results' + '/std_TC_Hausdorff.npy', np.std(tc_Hausdorff)) 
-    np.save('base_test_results' + '/std_ET_Hausdorff.npy', np.std(et_Hausdorff)) 
 
 if __name__ == '__main__':
     main()

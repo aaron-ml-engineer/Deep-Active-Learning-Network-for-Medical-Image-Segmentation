@@ -56,7 +56,6 @@ def train(train_loader, model, loss_fn, optimizer, device):
 
         model.zero_grad()
         # forward
-        #with amp.autocast(): 
         preds = model(data)                         
         train_loss = loss_fn(preds, labels)
         train_iou_scores = iou_score(preds, labels)
@@ -107,13 +106,19 @@ def validate(val_loader, model, loss_fn, device):
 
     return log
                                 
-def main(): # data is split into train and validation (labelled, 20%), unlabelled (active learning, 60%), and test (15%)
+def main(): 
+    # data is split into train and validation (labelled, 20%), unlabelled (active learning, 60%), and test (15%)
+    # here, initial training is performed and the model weights are saved for use in active learning and random learning continuation
     EPOCHS = 200
     LEARNING_RATE = 1e-3          
     EARLY_STOP = 25
     DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
     BATCH_SIZE = 32
     NUM_WORKERS = 0
+
+    # load the training set paths
+    # these are lists containing paths to the slices selected for the training dataset as computed in the 'data_split.ipynb' file.
+    # all MRI slices can be found in the 'all_data' folder
     TRAIN_IMG_DIR = pickle.load(open('data\\train_val\\img\\'+'train_val.data', 'rb'))
     TRAIN_LABEL_DIR = pickle.load(open('data\\train_val\\label\\'+'train_val.mask', 'rb'))
 

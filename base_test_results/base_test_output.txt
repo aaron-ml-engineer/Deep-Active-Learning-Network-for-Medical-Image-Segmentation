@@ -1,2 +1,0 @@
-2021-09-30 21:28:54,809 - INFO - test_num:1000
-2021-09-30 21:28:56,320 - INFO - => Creating 2D UNET Model

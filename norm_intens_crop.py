@@ -32,7 +32,6 @@ def norm_intens_filter(slice, top=99, bottom=1):
     # the non-background regions should be normalised since intensities range from 0 to 5000
     # the min in the normalised slice corresponds to 0 intensity in unnormalised slice
     # this is replaced with -9 to keep track of 0 intensities
-    # so those intensities can be discarded after during random patch sampling
     image_nonzero = slice[np.nonzero(slice)]
     if np.std(slice) == 0 or np.std(image_nonzero) == 0:
         return slice

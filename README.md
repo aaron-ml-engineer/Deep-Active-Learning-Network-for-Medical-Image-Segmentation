@@ -108,7 +108,7 @@ Brain tumour segmentation plays a vital role in computer-aided diagnosis (CAD) b
 ### Instructions
 NOTE: the folders in the OneDrive accompany the files in this Github repo and contain larger folders.
 
-1. Download the original BraTS 2018 data titled 'MICCAI_BraTS_2018_Data_Training' or just the pre-processed data in the 'all_data' folder from https://cityuni-my.sharepoint.com/:f:/g/personal/aaron_mir_city_ac_uk/Eq3XOS6aqotKoW39chEi8RkBU2qcDcFYYOJ-ldfOm9W6dg?e=VW4Uqi
+1. Download the original BraTS 2018 data titled 'MICCAI_BraTS_2018_Data_Training' or just the pre-processed data in the 'all_data' folder from the Onedrive link found in the Moodle submission.
 2. If downloading the original BraTS 2018 data, then you must first pre-process the data by running preprocess.py. (NOTE: This takes fairly long)
    ```sh
    https://github.com/Assassinsarms/Deep-Active-Learning-Network-for-Medical-Image-Segmentation/blob/master/preprocess.py
